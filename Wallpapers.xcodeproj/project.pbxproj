@@ -7,18 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B679209927EBBAD800FCC9B5 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B679209827EBBAD800FCC9B5 /* Bundle+Extension.swift */; };
 		B6869CEA27EAC6AD00E46331 /* WallpapersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6869CE927EAC6AD00E46331 /* WallpapersApp.swift */; };
 		B6869CEC27EAC6AD00E46331 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6869CEB27EAC6AD00E46331 /* ContentView.swift */; };
 		B6869CEE27EAC6AE00E46331 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6869CED27EAC6AE00E46331 /* Assets.xcassets */; };
 		B6869CF127EAC6AE00E46331 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6869CF027EAC6AE00E46331 /* Preview Assets.xcassets */; };
+		B6869D0227EAC96200E46331 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6869D0127EAC96200E46331 /* HTTPClient.swift */; };
+		B6869D0427EAC96800E46331 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6869D0327EAC96800E46331 /* Constants.swift */; };
+		B6869D0927EACD0D00E46331 /* Wallpaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6869D0827EACD0D00E46331 /* Wallpaper.swift */; };
+		B6869D1027EAF0A300E46331 /* File.json in Resources */ = {isa = PBXBuildFile; fileRef = B6869D0F27EAF0A300E46331 /* File.json */; };
+		B6869D1227EAF28F00E46331 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6869D1127EAF28F00E46331 /* URLs.swift */; };
+		B6869D1427EAF3FB00E46331 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6869D1327EAF3FB00E46331 /* User.swift */; };
+		B6869D1627EAFBE000E46331 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6869D1527EAFBE000E46331 /* ProfileImage.swift */; };
+		B6869D1927EAFD2900E46331 /* WallpaperViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6869D1827EAFD2900E46331 /* WallpaperViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B679209827EBBAD800FCC9B5 /* Bundle+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		B6869CE627EAC6AD00E46331 /* Wallpapers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallpapers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6869CE927EAC6AD00E46331 /* WallpapersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpapersApp.swift; sourceTree = "<group>"; };
 		B6869CEB27EAC6AD00E46331 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B6869CED27EAC6AE00E46331 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6869CF027EAC6AE00E46331 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B6869D0127EAC96200E46331 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		B6869D0327EAC96800E46331 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B6869D0827EACD0D00E46331 /* Wallpaper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallpaper.swift; sourceTree = "<group>"; };
+		B6869D0D27EAEDC600E46331 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		B6869D0E27EAEE1C00E46331 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B6869D0F27EAF0A300E46331 /* File.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = File.json; sourceTree = "<group>"; };
+		B6869D1127EAF28F00E46331 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
+		B6869D1327EAF3FB00E46331 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B6869D1527EAFBE000E46331 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
+		B6869D1827EAFD2900E46331 /* WallpaperViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +72,12 @@
 			isa = PBXGroup;
 			children = (
 				B6869CE927EAC6AD00E46331 /* WallpapersApp.swift */,
-				B6869CEB27EAC6AD00E46331 /* ContentView.swift */,
+				B6869CFF27EAC8D400E46331 /* Views */,
+				B6869D0527EACC4100E46331 /* Models */,
+				B6869D1A27EAFD2B00E46331 /* ViewModels */,
+				B6869D0027EAC95300E46331 /* Utils */,
 				B6869CED27EAC6AE00E46331 /* Assets.xcassets */,
+				B6869D0E27EAEE1C00E46331 /* Info.plist */,
 				B6869CEF27EAC6AE00E46331 /* Preview Content */,
 			);
 			path = Wallpapers;
@@ -62,9 +86,48 @@
 		B6869CEF27EAC6AE00E46331 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				B679209827EBBAD800FCC9B5 /* Bundle+Extension.swift */,
 				B6869CF027EAC6AE00E46331 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B6869CFF27EAC8D400E46331 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B6869CEB27EAC6AD00E46331 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B6869D0027EAC95300E46331 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B6869D0327EAC96800E46331 /* Constants.swift */,
+				B6869D0127EAC96200E46331 /* HTTPClient.swift */,
+				B6869D0F27EAF0A300E46331 /* File.json */,
+				B6869D0D27EAEDC600E46331 /* Secrets.xcconfig */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		B6869D0527EACC4100E46331 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B6869D0827EACD0D00E46331 /* Wallpaper.swift */,
+				B6869D1127EAF28F00E46331 /* URLs.swift */,
+				B6869D1327EAF3FB00E46331 /* User.swift */,
+				B6869D1527EAFBE000E46331 /* ProfileImage.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B6869D1A27EAFD2B00E46331 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B6869D1827EAFD2900E46331 /* WallpaperViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +146,8 @@
 			dependencies = (
 			);
 			name = Wallpapers;
+			packageProductDependencies = (
+			);
 			productName = Wallpapers;
 			productReference = B6869CE627EAC6AD00E46331 /* Wallpapers.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +176,8 @@
 				Base,
 			);
 			mainGroup = B6869CDD27EAC6AD00E46331;
+			packageReferences = (
+			);
 			productRefGroup = B6869CE727EAC6AD00E46331 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,6 +193,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6869CF127EAC6AE00E46331 /* Preview Assets.xcassets in Resources */,
+				B6869D1027EAF0A300E46331 /* File.json in Resources */,
 				B6869CEE27EAC6AE00E46331 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,8 +205,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6869D1227EAF28F00E46331 /* URLs.swift in Sources */,
+				B679209927EBBAD800FCC9B5 /* Bundle+Extension.swift in Sources */,
+				B6869D1927EAFD2900E46331 /* WallpaperViewModel.swift in Sources */,
+				B6869D1627EAFBE000E46331 /* ProfileImage.swift in Sources */,
 				B6869CEC27EAC6AD00E46331 /* ContentView.swift in Sources */,
 				B6869CEA27EAC6AD00E46331 /* WallpapersApp.swift in Sources */,
+				B6869D0227EAC96200E46331 /* HTTPClient.swift in Sources */,
+				B6869D1427EAF3FB00E46331 /* User.swift in Sources */,
+				B6869D0927EACD0D00E46331 /* Wallpaper.swift in Sources */,
+				B6869D0427EAC96800E46331 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +223,7 @@
 /* Begin XCBuildConfiguration section */
 		B6869CF227EAC6AE00E46331 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6869D0D27EAEDC600E46331 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -261,6 +338,7 @@
 		};
 		B6869CF527EAC6AE00E46331 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6869D0D27EAEDC600E46331 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -270,6 +348,7 @@
 				DEVELOPMENT_TEAM = 8FW6S5Z4LA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Wallpapers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +378,7 @@
 				DEVELOPMENT_TEAM = 8FW6S5Z4LA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Wallpapers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
