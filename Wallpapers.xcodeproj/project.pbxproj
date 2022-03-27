@@ -22,6 +22,7 @@
 		B6869D1927EAFD2900E46331 /* WallpaperViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6869D1827EAFD2900E46331 /* WallpaperViewModel.swift */; };
 		B688933E27F069870064B020 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B688933D27F069870064B020 /* SearchResultsView.swift */; };
 		B688934027F06CF20064B020 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B688933F27F06CF20064B020 /* SearchResults.swift */; };
+		B6BADDD527F122220040C1DF /* SearchMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BADDD427F122220040C1DF /* SearchMoreView.swift */; };
 		B6C8861427F0042400875C01 /* WallpaperListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C8861327F0042400875C01 /* WallpaperListView.swift */; };
 		B6C8861B27F00F4C00875C01 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C8861A27F00F4C00875C01 /* DetailView.swift */; };
 		B6C8862127F027F400875C01 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C8862027F027F400875C01 /* PopUpView.swift */; };
@@ -51,10 +52,11 @@
 		B6869D1827EAFD2900E46331 /* WallpaperViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperViewModel.swift; sourceTree = "<group>"; };
 		B688933D27F069870064B020 /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
 		B688933F27F06CF20064B020 /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
+		B6BADDD427F122220040C1DF /* SearchMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoreView.swift; sourceTree = "<group>"; };
 		B6C8861327F0042400875C01 /* WallpaperListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperListView.swift; sourceTree = "<group>"; };
 		B6C8861A27F00F4C00875C01 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		B6C8862027F027F400875C01 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
-		B6C8862D27F0518300875C01 /* Wallpapers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallpapers.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6C8862D27F0518300875C01 /* Wallpapers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Wallpapers.app; path = "/Users/Skyla/Library/Mobile Documents/com~apple~CloudDocs/Xcode/Active Projects/Wallpapers/build/Debug-iphoneos/Wallpapers.app"; sourceTree = "<absolute>"; };
 		B6C8862E27F0523A00875C01 /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
 		B6C8863127F056E900875C01 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		B6C8863327F0648200875C01 /* Bundle+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
@@ -78,7 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				B6869CE827EAC6AD00E46331 /* Wallpapers */,
-				B6C8862D27F0518300875C01 /* Wallpapers.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,6 +151,7 @@
 				B6C8861327F0042400875C01 /* WallpaperListView.swift */,
 				B6C8862E27F0523A00875C01 /* CircleButtonView.swift */,
 				B6C8862027F027F400875C01 /* PopUpView.swift */,
+				B6BADDD427F122220040C1DF /* SearchMoreView.swift */,
 			);
 			path = "Helper View";
 			sourceTree = "<group>";
@@ -233,6 +235,7 @@
 				B6C8862127F027F400875C01 /* PopUpView.swift in Sources */,
 				B6C8863427F0648200875C01 /* Bundle+Extension.swift in Sources */,
 				B6EA20D027EBEBF60052C263 /* ZoomView.swift in Sources */,
+				B6BADDD527F122220040C1DF /* SearchMoreView.swift in Sources */,
 				B6869D1227EAF28F00E46331 /* URLs.swift in Sources */,
 				B6C8862F27F0523A00875C01 /* CircleButtonView.swift in Sources */,
 				B6C8861B27F00F4C00875C01 /* DetailView.swift in Sources */,
@@ -320,6 +323,7 @@
 		};
 		B6869CF327EAC6AE00E46331 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6869D0D27EAEDC600E46331 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -405,6 +409,7 @@
 		};
 		B6869CF627EAC6AE00E46331 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6869D0D27EAEDC600E46331 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -7,7 +7,6 @@
 import SwiftUI
 
 struct ContentView: View {
-	@Environment(\.colorScheme) var colorScheme
 	
 	@StateObject var wallpapers = WallpaperViewModel()
 	@StateObject var detailViewModel = DetailViewModel()
@@ -86,11 +85,11 @@ struct ContentView: View {
 			}
 		}
 		.onAppear {
-#if DEBUG
-			Task {
-				await wallpapers.fetchFromLibrary()
-			}
-#else
+//#if DEBUG
+//			Task {
+//				await wallpapers.fetchFromLibrary()
+//			}
+//#else
 			Task {
 				do {
 					try await wallpapers.fetch()
@@ -98,7 +97,7 @@ struct ContentView: View {
 					print(error)
 				}
 			}
-#endif
+//#endif
 		}
 		.statusBar(hidden: true)
 	}

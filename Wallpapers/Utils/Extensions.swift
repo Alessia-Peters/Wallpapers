@@ -26,7 +26,7 @@ struct EmptyWallpapers {
 														  thumb: ""),
 											   user: User(username: "",
 														  name: "",
-														  profileImage: ProfileImage(image: "")))],
+														  profileImage: ProfileImage(image: "")), height: 0)],
 									[Wallpaper(id: "",
 											   urls: URLs(raw: "",
 														  full: "",
@@ -35,7 +35,7 @@ struct EmptyWallpapers {
 														  thumb: ""),
 											   user: User(username: "",
 														  name: "",
-														  profileImage: ProfileImage(image: "")))],
+														  profileImage: ProfileImage(image: "")), height: 0)],
 									[Wallpaper(id: "",
 											   urls: URLs(raw: "",
 														  full: "",
@@ -44,7 +44,7 @@ struct EmptyWallpapers {
 														  thumb: ""),
 											   user: User(username: "",
 														  name: "",
-														  profileImage: ProfileImage(image: "")))]]
+														  profileImage: ProfileImage(image: "")), height: 0)]]
 }
 
 extension URLCache {

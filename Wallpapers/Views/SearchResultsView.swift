@@ -11,15 +11,31 @@ struct SearchResultsView: View {
 	@ObservedObject var detailViewModel: DetailViewModel
 	
 	@Binding var selectedWallpaper: Wallpaper?
-//	@Binding var zoomed: Bool
+	@Binding var searchText: String
 	
-    var body: some View {
-		HStack{
-			WallpaperListView(index: 0, items: viewModel.searchedWallpapers!, viewModel: detailViewModel)
-			WallpaperListView(index: 1, items: viewModel.searchedWallpapers!, viewModel: detailViewModel)
-			WallpaperListView(index: 2, items: viewModel.searchedWallpapers!, viewModel: detailViewModel)
+	var body: some View {
+		ScrollView {
+			VStack {
+				HStack{
+					WallpaperListView(index: 0, items: viewModel.searchedWallpapers!, viewModel: detailViewModel)
+					WallpaperListView(index: 1, items: viewModel.searchedWallpapers!, viewModel: detailViewModel)
+					WallpaperListView(index: 2, items: viewModel.searchedWallpapers!, viewModel: detailViewModel)
+				}
+				Button {
+					Task {
+						viewModel.page += 1
+						do {
+							try await viewModel.searchMore(searchText: searchText)
+						} catch {
+							print(error)
+						}
+					}
+				} label: {
+					SearchMoreView()
+				}
+			}
 		}
-    }
+	}
 }
 
 //struct SearchResultView_Previews: PreviewProvider {

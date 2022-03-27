@@ -11,4 +11,6 @@ struct Wallpaper : Identifiable, Codable {
 	
 	var urls: URLs
 	var user: User
+	
+	var height: Int
 }

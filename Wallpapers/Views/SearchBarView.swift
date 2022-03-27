@@ -70,7 +70,7 @@ struct SearchBarView: View {
 				}
 				Spacer()
 				if viewModel.searchedWallpapers != nil {
-					SearchResultsView(viewModel: viewModel, detailViewModel: detailViewModel, selectedWallpaper: $selectedWallpaper)
+					SearchResultsView(viewModel: viewModel, detailViewModel: detailViewModel, selectedWallpaper: $selectedWallpaper, searchText: $searchText)
 					.padding(.top)
 					.padding(.horizontal, 6)
 				}

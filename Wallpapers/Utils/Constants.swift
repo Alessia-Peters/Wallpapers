@@ -13,6 +13,7 @@ enum Constants {
 enum Endpoints {
 	static let photos = "photos?per_page=200"
 	static let search = "search/photos?query="
+	static let page = "&page="
 	static let random = "photos/random?count=30"
 }
 
