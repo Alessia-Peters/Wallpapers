@@ -33,7 +33,7 @@ class HTTPClient {
 		request.addValue(HTTPHeaders.apiVersion.1, forHTTPHeaderField: HTTPHeaders.apiVersion.0)
 		
 		let (data, response) = try await URLSession.shared.data(for: request)
-		
+		print(response)
 		guard (response as? HTTPURLResponse)?.statusCode == 200 else {
 			throw HTTPError.badResponse
 		}

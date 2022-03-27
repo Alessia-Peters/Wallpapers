@@ -9,10 +9,10 @@ import SwiftUI
 struct DetailView: View {
 	@Environment(\.colorScheme) var colorScheme
 	
-	@ObservedObject var wallpapers: WallpaperViewModel
+	@ObservedObject var viewModel: DetailViewModel
 	
-	@Binding var zoomed: Bool
-	@Binding var wallpaper: Wallpaper
+//	@Binding var zoomed: Bool
+//	@Binding var wallpaper: Wallpaper
 	
 	@State var liked = false
 	@State var saving = false
@@ -26,22 +26,15 @@ struct DetailView: View {
 			HStack {
 				Button {
 					withAnimation {
-						zoomed = false
+						viewModel.zoomed = false
 					}
 				} label: {
-					Image(systemName: "arrow.left")
-						.font(.system(size: 25, weight: .semibold))
-						.foregroundColor(.white)
-						.padding(8)
-						.background(
-							.thinMaterial,
-							in: Circle()
-						)
+					CircleButtonView(symbol: "arrow.left")
 				}
 				.padding()
 				Spacer()
 			}
-			.offset(y: 30)
+			.offset(y: 20)
 			.frame(width: screen.width)
 			
 			
@@ -49,7 +42,7 @@ struct DetailView: View {
 			ZStack {
 				
 				HStack {
-					AsyncImage(url: URL(string: wallpaper.user.profileImage.image)) { image in
+					AsyncImage(url: URL(string: viewModel.selectedWallpaper!.user.profileImage.image)) { image in
 						image
 							.resizable()
 					} placeholder: {
@@ -61,14 +54,13 @@ struct DetailView: View {
 					.clipShape(Circle())
 					
 					VStack(alignment: .leading) {
-						Text(wallpaper.user.name)
+						Text(viewModel.selectedWallpaper!.user.name)
 							.font(.system(size: 25, weight: .semibold))
-						Text(wallpaper.user.username)
+						Text(viewModel.selectedWallpaper!.user.username)
 							.fontWeight(.light)
 					}
 					.lineLimit(1)
 					.minimumScaleFactor(0.5)
-					.foregroundColor(.white)
 					.padding()
 					
 					Spacer()
@@ -80,20 +72,19 @@ struct DetailView: View {
 							}
 						} label: {
 							Image(systemName: liked ? "heart.fill" : "heart")
-								.foregroundColor(liked ? .red : .white)
+								.foregroundColor(liked ? .red : .primary)
 								.transition(.scale)
 						}
 						Button {
 							saving = true
 							Task {
 								do {
-									try await wallpapers.saveToLibrary(imageString: wallpaper.urls.raw)
+									try await viewModel.saveToLibrary(imageString: viewModel.selectedWallpaper!.urls.raw)
 								} catch {
 									print(error.localizedDescription)
-									wallpapers.popUpText = "\(error.localizedDescription)"
 								}
 								withAnimation {
-									wallpapers.popUpActive = true
+									viewModel.popUpActive = true
 								}
 								saving = false
 							}
@@ -107,7 +98,6 @@ struct DetailView: View {
 						}
 						.disabled(saving)
 					}
-					.foregroundColor(.white)
 					.font(.system(size: 25, weight: .medium))
 					.padding(5)
 				}
@@ -123,6 +113,6 @@ struct DetailView: View {
 			}
 			.padding(.bottom)
 		}
-		.foregroundColor(.black)
+		.foregroundColor(.primary)
 	}
 }

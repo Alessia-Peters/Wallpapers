@@ -8,16 +8,16 @@ import SwiftUI
 import CachedAsyncImage
 
 struct ZoomView: View {
-	@ObservedObject var wallpapers: WallpaperViewModel
+	@ObservedObject var viewModel: DetailViewModel
 	
-	@State var wallpaper: Wallpaper
+	//	@State var wallpaper: Wallpaper
 	@State var detailShown = true
 	
-	@Binding var zoomed: Bool
+	//	@Binding var zoomed: Bool
 	
 	var body: some View {
 		ZStack{
-			CachedAsyncImage(url: URL(string: wallpaper.urls.full)!, urlCache: .imageCache) { image in
+			CachedAsyncImage(url: URL(string: viewModel.selectedWallpaper!.urls.full)!, urlCache: .imageCache) { image in
 				image
 					.resizable()
 					.scaledToFill()
@@ -25,7 +25,7 @@ struct ZoomView: View {
 			} placeholder: {
 				
 				Color.white
-				CachedAsyncImage(url: URL(string: wallpaper.urls.small), urlCache: .imageCache) { image in
+				CachedAsyncImage(url: URL(string: viewModel.selectedWallpaper!.urls.small), urlCache: .imageCache) { image in
 					image
 						.resizable()
 						.scaledToFill()
@@ -41,11 +41,9 @@ struct ZoomView: View {
 				}
 			}
 			
-			DetailView(wallpapers: wallpapers, zoomed: $zoomed, wallpaper: $wallpaper)
+			DetailView(viewModel: viewModel)
 				.opacity(detailShown ? 1 : 0)
 				.disabled(detailShown ? false : true)
-			
 		}
-		.statusBar(hidden: true)
 	}
 }

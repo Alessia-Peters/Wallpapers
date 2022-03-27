@@ -7,46 +7,77 @@
 import SwiftUI
 
 struct ContentView: View {
+	@Environment(\.colorScheme) var colorScheme
+	
 	@StateObject var wallpapers = WallpaperViewModel()
+	@StateObject var detailViewModel = DetailViewModel()
 	
-	@State var selectedWallpaper: Wallpaper? = nil
-	
-	@State var zoomed = false
+//	@State var selectedWallpaper: Wallpaper? = nil
+//	@State var zoomed = false
+	@State var searching = false
 	
 	let screen = UIScreen.main.bounds
-	
-	private let columns = [
-		GridItem(.flexible()),
-		GridItem(.flexible()),
-		GridItem(.flexible())
-	]
 	
 	var body: some View {
 		ZStack {
 			ScrollView {
-				HStack {
-					WallpaperListView(index: 0, wallpapers: wallpapers, selectedWallpaper: $selectedWallpaper, zoomed: $zoomed)
-					WallpaperListView(index: 1, wallpapers: wallpapers, selectedWallpaper: $selectedWallpaper, zoomed: $zoomed)
-				}
-				.refreshable {
-					Task {
-						try await wallpapers.fetch()
+				VStack {
+					Image("Logo")
+						.resizable()
+						.scaledToFit()
+						.frame(height: 30)
+						.padding(.horizontal, 90)
+						.padding(.vertical,5)
+						.foregroundColor(.primary)
+					
+					
+					HStack {
+						WallpaperListView(index: 0, items: wallpapers.allWallpapers, viewModel: detailViewModel)
+						WallpaperListView(index: 1, items: wallpapers.allWallpapers, viewModel: detailViewModel)
+						WallpaperListView(index: 2, items: wallpapers.allWallpapers, viewModel: detailViewModel)
 					}
 				}
+				.padding(.horizontal, 6)
 			}
-			if selectedWallpaper != nil {
-				ZoomView(wallpapers: wallpapers, wallpaper: selectedWallpaper!, zoomed: $zoomed)
+			VStack {
+				HStack {
+					Button {
+						withAnimation {
+							searching.toggle()
+						}
+					} label: {
+						CircleButtonView(symbol: "magnifyingglass")
+					}
+					
+					Spacer()
+					
+					Button {
+						
+					} label: {
+						CircleButtonView(symbol: "heart")
+					}
+				}
+				.foregroundColor(.primary)
+				.padding()
+				.offset(y: -20)
+				Spacer()
+			}
+			if searching {
+				SearchBarView(detailViewModel: detailViewModel, searching: $searching)
+					.zIndex(5)
+			}
+			if detailViewModel.zoomed {
+				ZoomView(viewModel: detailViewModel)
 					.frame(width: screen.width, height: screen.height)
 					.zIndex(5)
 					.transition(.opacity)
 			}
-			if wallpapers.popUpActive {
+			if detailViewModel.popUpActive {
 				PopUpView(text: "Image Saved!")
 					.onAppear {
 						DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
 							withAnimation {
-								wallpapers.popUpActive = false
-								wallpapers.popUpText = "Image Saved!"
+								detailViewModel.popUpActive = false
 							}
 						}
 					}
@@ -55,6 +86,11 @@ struct ContentView: View {
 			}
 		}
 		.onAppear {
+#if DEBUG
+			Task {
+				await wallpapers.fetchFromLibrary()
+			}
+#else
 			Task {
 				do {
 					try await wallpapers.fetch()
@@ -62,14 +98,9 @@ struct ContentView: View {
 					print(error)
 				}
 			}
+#endif
 		}
-		.onChange(of: zoomed) { newValue in
-			if newValue == false {
-				withAnimation {
-					selectedWallpaper = nil
-				}
-			}
-		}
+		.statusBar(hidden: true)
 	}
 }
 

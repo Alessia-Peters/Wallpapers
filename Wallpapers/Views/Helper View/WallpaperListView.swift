@@ -9,19 +9,20 @@ import CachedAsyncImage
 
 struct WallpaperListView: View {
 	var index: Int
+	var items: [[Wallpaper]]
 	
-	@ObservedObject var wallpapers: WallpaperViewModel
+	@ObservedObject var viewModel: DetailViewModel
 	
-	@Binding var selectedWallpaper: Wallpaper?
-	@Binding var zoomed: Bool
+//	@Binding var selectedWallpaper: Wallpaper?
+//	@Binding var zoomed: Bool
 	
     var body: some View {
 		VStack {
-			ForEach(wallpapers.allWallpapers[index]) { wallpaper in
+			ForEach(items[index]) { wallpaper in
 				Button {
 					withAnimation {
-						selectedWallpaper = wallpaper
-						zoomed = true
+						viewModel.selectedWallpaper = wallpaper
+						viewModel.zoomed = true
 					}
 				} label: {
 					CachedAsyncImage(url: URL(string: wallpaper.urls.small), urlCache: .imageCache) { image in
@@ -32,7 +33,7 @@ struct WallpaperListView: View {
 						Color
 							.purple
 							.opacity(0.1)
-							.frame(height: 300)
+							.frame(height: 150)
 					}
 					.cornerRadius(15)
 					.padding(3)

@@ -8,14 +8,12 @@ import SwiftUI
 
 class WallpaperViewModel : ObservableObject {
 	@Published var allWallpapers = [[Wallpaper]]()
-	@Published var popUpActive = false
 	@Published var popUpText = "Image Saved!"
 	
 	func fetch() async throws {
-		let urlString = Constants.baseUrl + Endpoints.photos
+		let urlString = Constants.baseUrl + Endpoints.random
 		
 		guard let url = URL(string: urlString) else {
-			handleError(error: HTTPError.badUrl)
 			throw HTTPError.badUrl
 		}
 		
@@ -30,30 +28,13 @@ class WallpaperViewModel : ObservableObject {
 		}
 	}
 	
-	func saveToLibrary(imageString: String) async throws {
+	func fetchFromLibrary() async {
+		let data = Bundle.main.decode([Wallpaper].self, from: "File.json")
 		
-		let image = try await HTTPClient.shared.fetchImage(imageString: imageString)
+		let splitResponse = data.split()
 		
-		UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-	}
-	
-	func handleError(error: HTTPError) {
-		switch error {
-		case .badUrl:
-			popUpText = "URL could not be parsed (error code -1)"
-			popUpActive = true
-			
-		case .errorDecodingData:
-			popUpText = "Data could not be decoded (error code -2)"
-			popUpActive = true
-			
-		case .badResponse:
-			popUpText = "Server could not be reached (error code -3)"
-			popUpActive = true
-			
-		case .invalidData:
-			popUpText = "Returned data not useable (error code -4)"
-			popUpActive = true
+		DispatchQueue.main.async {
+			self.allWallpapers = splitResponse
 		}
 	}
 	
