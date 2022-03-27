@@ -24,6 +24,8 @@
 		B6C8861427F0042400875C01 /* WallpaperListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C8861327F0042400875C01 /* WallpaperListView.swift */; };
 		B6C8861B27F00F4C00875C01 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C8861A27F00F4C00875C01 /* DetailView.swift */; };
 		B6C8862127F027F400875C01 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C8862027F027F400875C01 /* PopUpView.swift */; };
+		B6C8862427F0369400875C01 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = B6C8862327F0369400875C01 /* CachedAsyncImage */; };
+		B6C8862A27F0399B00875C01 /* PulseOpacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C8862927F0399B00875C01 /* PulseOpacity.swift */; };
 		B6EA20D027EBEBF60052C263 /* ZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EA20CF27EBEBF60052C263 /* ZoomView.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +50,7 @@
 		B6C8861927F009DB00875C01 /* Wallpapers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Wallpapers.app; path = "/Users/Skyla/Library/Mobile Documents/com~apple~CloudDocs/Xcode/Active Projects/Wallpapers/build/Debug-iphoneos/Wallpapers.app"; sourceTree = "<absolute>"; };
 		B6C8861A27F00F4C00875C01 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		B6C8862027F027F400875C01 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
+		B6C8862927F0399B00875C01 /* PulseOpacity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseOpacity.swift; sourceTree = "<group>"; };
 		B6EA20CF27EBEBF60052C263 /* ZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6C8862427F0369400875C01 /* CachedAsyncImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +115,7 @@
 				B60292CE27EFE83400C9ABB6 /* Extensions.swift */,
 				B6869D0327EAC96800E46331 /* Constants.swift */,
 				B6869D0127EAC96200E46331 /* HTTPClient.swift */,
+				B6C8862927F0399B00875C01 /* PulseOpacity.swift */,
 				B6869D0F27EAF0A300E46331 /* File.json */,
 				B6869D0D27EAEDC600E46331 /* Secrets.xcconfig */,
 			);
@@ -153,6 +158,7 @@
 			);
 			name = Wallpapers;
 			packageProductDependencies = (
+				B6C8862327F0369400875C01 /* CachedAsyncImage */,
 			);
 			productName = Wallpapers;
 			productReference = B6C8861927F009DB00875C01 /* Wallpapers.app */;
@@ -183,6 +189,7 @@
 			);
 			mainGroup = B6869CDD27EAC6AD00E46331;
 			packageReferences = (
+				B6C8862227F0369400875C01 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
 			);
 			productRefGroup = B6869CDD27EAC6AD00E46331;
 			projectDirPath = "";
@@ -226,6 +233,7 @@
 				B6C8861427F0042400875C01 /* WallpaperListView.swift in Sources */,
 				B6869D0927EACD0D00E46331 /* Wallpaper.swift in Sources */,
 				B6869D0427EAC96800E46331 /* Constants.swift in Sources */,
+				B6C8862A27F0399B00875C01 /* PulseOpacity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +440,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B6C8862227F0369400875C01 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B6C8862327F0369400875C01 /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B6C8862227F0369400875C01 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B6869CDE27EAC6AD00E46331 /* Project object */;
 }

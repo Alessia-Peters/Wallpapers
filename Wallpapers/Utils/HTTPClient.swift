@@ -48,7 +48,9 @@ class HTTPClient {
 	}
 	
 	func fetchImage(imageString: String) async throws -> UIImage{
-		let imageUrl = URL(string: imageString)!
+		guard let imageUrl = URL(string: imageString) else {
+			throw HTTPError.badUrl
+		}
 		
 		let (data, response) = try await URLSession.shared.data(for: URLRequest(url: imageUrl))
 		

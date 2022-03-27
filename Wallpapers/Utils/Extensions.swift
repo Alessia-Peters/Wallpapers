@@ -37,3 +37,7 @@ extension Color {
 struct EmptyWallpapers {
 	let wallpapers:[[Wallpaper]] = [[Wallpaper(id: "",urls: URLs(raw: "",full: "",regular: "",small: "",thumb: ""),user: User(username: "",name: "",profileImage: ProfileImage(image: "")))],[Wallpaper(id: "",urls: URLs(raw: "",full: "",regular: "",small: "",thumb: ""),user: User(username: "",name: "",profileImage: ProfileImage(image: "")))]]
 }
+
+extension URLCache {
+	static let imageCache = URLCache(memoryCapacity: 512*1000*1000, diskCapacity: 10*1000*1000*1000)
+}

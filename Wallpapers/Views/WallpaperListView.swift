@@ -5,6 +5,7 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct WallpaperListView: View {
 	var index: Int
@@ -23,7 +24,7 @@ struct WallpaperListView: View {
 						zoomed = true
 					}
 				} label: {
-					AsyncImage(url: URL(string: wallpaper.urls.small)) { image in
+					CachedAsyncImage(url: URL(string: wallpaper.urls.small), urlCache: .imageCache) { image in
 						image
 							.resizable()
 							.scaledToFit()
@@ -31,6 +32,7 @@ struct WallpaperListView: View {
 						Color
 							.purple
 							.opacity(0.1)
+							.frame(height: 300)
 					}
 					.cornerRadius(15)
 					.padding(3)

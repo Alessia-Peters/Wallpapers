@@ -40,13 +40,18 @@ struct ContentView: View {
 					.zIndex(5)
 					.transition(.opacity)
 			}
-			if wallpapers.imageSaved {
+			if wallpapers.popUpActive {
 				PopUpView(text: "Image Saved!")
 					.onAppear {
-						DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-							wallpapers.imageSaved = false
+						DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+							withAnimation {
+								wallpapers.popUpActive = false
+								wallpapers.popUpText = "Image Saved!"
+							}
 						}
 					}
+					.transition(.move(edge: .top))
+					.zIndex(5)
 			}
 		}
 		.onAppear {

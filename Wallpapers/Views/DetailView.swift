@@ -15,8 +15,11 @@ struct DetailView: View {
 	@Binding var wallpaper: Wallpaper
 	
 	@State var liked = false
+	@State var saving = false
+	@State private var value = 1.0
 	
-	let screen = UIScreen.main.bounds
+	private let screen = UIScreen.main.bounds
+	
 	
 	var body: some View {
 		VStack {
@@ -81,16 +84,28 @@ struct DetailView: View {
 								.transition(.scale)
 						}
 						Button {
+							saving = true
 							Task {
 								do {
 									try await wallpapers.saveToLibrary(imageString: wallpaper.urls.raw)
 								} catch {
-									print(error)
+									print(error.localizedDescription)
+									wallpapers.popUpText = "\(error.localizedDescription)"
 								}
+								withAnimation {
+									wallpapers.popUpActive = true
+								}
+								saving = false
 							}
 						} label: {
 							Image(systemName: "arrow.down.circle")
+								.opacity(saving ? value : 1)
+								.animation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true), value: value)
+								.onChange(of: saving) { newValue in
+									self.value = 0.3
+								}
 						}
+						.disabled(saving)
 					}
 					.foregroundColor(.white)
 					.font(.system(size: 25, weight: .medium))

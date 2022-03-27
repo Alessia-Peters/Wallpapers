@@ -10,15 +10,17 @@ struct PopUpView: View {
 	let screen = UIScreen.main.bounds
 	var text: String
     var body: some View {
+		VStack {
         Text(text)
 			.font(.system(size: 20, weight: .medium))
-			.opacity(0.8)
 			.frame(width: screen.width - 70, height: 60)
 			.background(
 				.ultraThinMaterial,
 				in: RoundedRectangle(cornerRadius: 15)
 			)
-			
+			.padding(.top, 40)
+			Spacer()
+		}
     }
 }
 
