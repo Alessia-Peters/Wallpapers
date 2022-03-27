@@ -8,7 +8,6 @@ import Foundation
 
 enum Constants {
 	static let baseUrl = "https://api.unsplash.com/"
-	static let authentication = "Client-ID \(Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String ?? "")"
 }
 
 enum Endpoints {

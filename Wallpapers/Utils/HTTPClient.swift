@@ -4,18 +4,15 @@
 //  Created by Alessia on 23/3/2022.
 //
 
-import Foundation
+import SwiftUI
 
 enum HTTPMethods: String {
 	case POST, GET, PUT, DELETE
 }
 
-enum MIMEType: String {
-	case JSON = "application/json"
-}
-
-enum HTTPHeaders: String {
-	case contentType = "Content-Type"
+enum HTTPHeaders {
+	static let authentication = ("Authorization","Client-ID \(Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String ?? "")")
+	static let apiVersion = ("Accept-Version","v1")
 }
 
 enum HTTPError: Error {
@@ -32,7 +29,8 @@ class HTTPClient {
 		var request = URLRequest(url: url)
 		
 		request.httpMethod = HTTPMethods.GET.rawValue
-		request.addValue(Constants.authentication, forHTTPHeaderField: "Authorization")
+		request.addValue(HTTPHeaders.authentication.1, forHTTPHeaderField: HTTPHeaders.authentication.0)
+		request.addValue(HTTPHeaders.apiVersion.1, forHTTPHeaderField: HTTPHeaders.apiVersion.0)
 		
 		let (data, response) = try await URLSession.shared.data(for: request)
 		
@@ -40,10 +38,28 @@ class HTTPClient {
 			throw HTTPError.badResponse
 		}
 		
-		guard let object = try? JSONDecoder().decode(T.self, from: data) else {
+		let decoder = JSONDecoder()
+		
+		guard let object = try? decoder.decode(T.self, from: data) else {
 			throw HTTPError.errorDecodingData
 		}
 		
 		return object
+	}
+	
+	func fetchImage(imageString: String) async throws -> UIImage{
+		let imageUrl = URL(string: imageString)!
+		
+		let (data, response) = try await URLSession.shared.data(for: URLRequest(url: imageUrl))
+		
+		guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+			throw HTTPError.badResponse
+		}
+		
+		guard let image = UIImage(data: data) else {
+			throw HTTPError.errorDecodingData
+		}
+		
+		return image
 	}
 }

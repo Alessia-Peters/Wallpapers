@@ -9,6 +9,12 @@ import SwiftUI
 struct ContentView: View {
 	@StateObject var wallpapers = WallpaperViewModel()
 	
+	@State var selectedWallpaper: Wallpaper? = nil
+	
+	@State var zoomed = false
+	
+	let screen = UIScreen.main.bounds
+	
 	private let columns = [
 		GridItem(.flexible()),
 		GridItem(.flexible()),
@@ -16,36 +22,47 @@ struct ContentView: View {
 	]
 	
 	var body: some View {
-		VStack {
+		ZStack {
 			ScrollView {
-				LazyVGrid(columns: columns) {
-					ForEach(wallpapers.wallpapers) { wallpaper in
-						AsyncImage(url: URL(string: wallpaper.urls.thumb)) { image in
-							image
-								.resizable()
-								.scaledToFit()
-						} placeholder: {
-							Color
-								.purple
-								.opacity(0.1)
-						}
-						.cornerRadius(15)
-						.padding(3)
-//						.frame(width: 200, height: 300)
+				HStack {
+					WallpaperListView(index: 0, wallpapers: wallpapers, selectedWallpaper: $selectedWallpaper, zoomed: $zoomed)
+					WallpaperListView(index: 1, wallpapers: wallpapers, selectedWallpaper: $selectedWallpaper, zoomed: $zoomed)
+				}
+				.refreshable {
+					Task {
+						try await wallpapers.fetch()
 					}
 				}
 			}
-			.refreshable {
-				Task {
+			if selectedWallpaper != nil {
+				ZoomView(wallpapers: wallpapers, wallpaper: selectedWallpaper!, zoomed: $zoomed)
+					.frame(width: screen.width, height: screen.height)
+					.zIndex(5)
+					.transition(.opacity)
+			}
+			if wallpapers.imageSaved {
+				PopUpView(text: "Image Saved!")
+					.onAppear {
+						DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+							wallpapers.imageSaved = false
+						}
+					}
+			}
+		}
+		.onAppear {
+			Task {
+				do {
 					try await wallpapers.fetch()
+				} catch {
+					print(error)
 				}
 			}
-			.onAppear {
-				Task {
-					try await wallpapers.fetch()
+		}
+		.onChange(of: zoomed) { newValue in
+			if newValue == false {
+				withAnimation {
+					selectedWallpaper = nil
 				}
-				
-//				wallpapers.wallpapers = Bundle.main.decode([Wallpaper].self, from: "File.json")
 			}
 		}
 	}

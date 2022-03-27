@@ -7,7 +7,9 @@
 import Foundation
 
 struct ProfileImage : Codable {
-	var small: String
-	var medium: String
-	var large: String
+	var image: String
+	
+	enum CodingKeys: String, CodingKey {
+		case image = "large"
+	}
 }

@@ -4,10 +4,11 @@
 //  Created by Alessia on 23/3/2022.
 //
 
-import Foundation
+import SwiftUI
 
 class WallpaperViewModel : ObservableObject {
-	@Published var wallpapers = [Wallpaper]()
+	@Published var allWallpapers = [[Wallpaper]]()
+	@Published var imageSaved = false
 	
 	func fetch() async throws {
 		let urlString = Constants.baseUrl + Endpoints.photos
@@ -18,12 +19,31 @@ class WallpaperViewModel : ObservableObject {
 		
 		let response: [Wallpaper] = try await HTTPClient.shared.fetch(url: url)
 		
+		let splitResponse = response.split()
+		
 		DispatchQueue.main.async {
-			self.wallpapers = response
+			self.allWallpapers = splitResponse
 		}
 	}
 	
-	func debugFetch() async throws {
+	func saveToLibrary(imageString: String) async throws {
 		
+		let image = try await HTTPClient.shared.fetchImage(imageString: imageString)
+		
+		UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+		
+		imageSaved = true
+	}
+	
+	init() {
+		allWallpapers = EmptyWallpapers.init().wallpapers
+		
+		
+		//		do {
+		//		try await fetch()
+		//		} catch {
+		//			print(error)
+		//		}
 	}
 }
+

@@ -11,14 +11,4 @@ struct Wallpaper : Identifiable, Codable {
 	
 	var urls: URLs
 	var user: User
-	var creationDate: String
-
-	enum CodingKeys: String, CodingKey {
-		case id, user, urls
-		case creationDate = "created_at"
-	}
-}
-
-struct Entry : Codable {
-	var wallpapers: [Wallpaper] = Array()
 }
