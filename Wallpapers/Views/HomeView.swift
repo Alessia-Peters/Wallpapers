@@ -13,8 +13,6 @@ struct HomeView: View {
 	
 	@State var searching = false
 	
-//	let screen = UIScreen.main.bounds
-	
 	var body: some View {
 		ZStack {
 			ScrollView {

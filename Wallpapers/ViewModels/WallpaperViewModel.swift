@@ -7,6 +7,7 @@
 import SwiftUI
 
 class WallpaperViewModel : ObservableObject {
+	
 	@Published var allWallpapers: [[Wallpaper]]
 	@Published var popUpText = "Image Saved!"
 	@Published var connectionState: ConnectionState = .disconnected
