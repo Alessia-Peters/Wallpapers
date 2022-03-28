@@ -36,6 +36,7 @@ struct SearchBarView: View {
 							.textFieldStyle(.plain)
 						
 						Button {
+							viewModel.noResults = false
 							Task {
 								do {
 									try await viewModel.search(searchText: searchText)
@@ -53,8 +54,7 @@ struct SearchBarView: View {
 						.regularMaterial,
 						in: RoundedRectangle(cornerRadius: 20, style: .continuous)
 					)
-					.padding(.leading,18)
-					.offset(y: 4)
+					.padding(.leading, 25)
 					.frame(height: 25)
 					Button {
 						withAnimation {
@@ -64,15 +64,19 @@ struct SearchBarView: View {
 					} label: {
 						Text("Cancel")
 					}
-					.padding(.top, 8)
 					.padding(.trailing)
 					.padding(.leading, 5)
 				}
+				.offset(y: 8)
 				Spacer()
-				if viewModel.searchedWallpapers != nil {
-					SearchResultsView(viewModel: viewModel, detailViewModel: detailViewModel, selectedWallpaper: $selectedWallpaper, searchText: $searchText)
+				if viewModel.showingResults && viewModel.searchedWallpapers != nil {
+					SearchResultsView(viewModel: viewModel, detailViewModel: detailViewModel, searchText: $searchText)
 					.padding(.top)
 					.padding(.horizontal, 6)
+				} else if viewModel.noResults {
+					Text("No Results")
+						.opacity(0.4)
+					Spacer()
 				}
 			}
 			if selectedWallpaper != nil {

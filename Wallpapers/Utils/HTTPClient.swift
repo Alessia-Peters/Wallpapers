@@ -16,7 +16,7 @@ enum HTTPHeaders {
 }
 
 enum HTTPError: Error {
-	case badUrl, badResponse, errorDecodingData, invalidData
+	case badUrl, badResponse, errorDecodingData, invalidData, noResults
 }
 
 class HTTPClient {

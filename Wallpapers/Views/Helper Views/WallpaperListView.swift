@@ -28,7 +28,7 @@ struct WallpaperListView: View {
 							.scaledToFit()
 					} placeholder: {
 						Color
-							.purple
+							.accentColor
 							.opacity(0.1)
 							.frame(height: 150)
 					}

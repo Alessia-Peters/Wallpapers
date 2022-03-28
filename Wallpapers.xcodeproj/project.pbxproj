@@ -11,7 +11,7 @@
 		B62B5E0627F0720E00570BB0 /* SearchingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B5E0527F0720E00570BB0 /* SearchingViewModel.swift */; };
 		B62B5E0A27F074DC00570BB0 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B5E0927F074DC00570BB0 /* DetailViewModel.swift */; };
 		B6869CEA27EAC6AD00E46331 /* WallpapersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6869CE927EAC6AD00E46331 /* WallpapersApp.swift */; };
-		B6869CEC27EAC6AD00E46331 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6869CEB27EAC6AD00E46331 /* ContentView.swift */; };
+		B6869CEC27EAC6AD00E46331 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6869CEB27EAC6AD00E46331 /* HomeView.swift */; };
 		B6869CEE27EAC6AE00E46331 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6869CED27EAC6AE00E46331 /* Assets.xcassets */; };
 		B6869D0227EAC96200E46331 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6869D0127EAC96200E46331 /* HTTPClient.swift */; };
 		B6869D0427EAC96800E46331 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6869D0327EAC96800E46331 /* Constants.swift */; };
@@ -40,7 +40,7 @@
 		B62B5E0927F074DC00570BB0 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		B62B7AC527F1315C00F9515D /* Wallpapers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallpapers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6869CE927EAC6AD00E46331 /* WallpapersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpapersApp.swift; sourceTree = "<group>"; };
-		B6869CEB27EAC6AD00E46331 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B6869CEB27EAC6AD00E46331 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B6869CED27EAC6AE00E46331 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6869D0127EAC96200E46331 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		B6869D0327EAC96800E46331 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -94,7 +94,6 @@
 				B6869D0027EAC95300E46331 /* Utils */,
 				B6869CED27EAC6AE00E46331 /* Assets.xcassets */,
 				B6869D0E27EAEE1C00E46331 /* Info.plist */,
-				B6C8863327F0648200875C01 /* Bundle+Extension.swift */,
 			);
 			path = Wallpapers;
 			sourceTree = "<group>";
@@ -102,7 +101,7 @@
 		B6869CFF27EAC8D400E46331 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B6869CEB27EAC6AD00E46331 /* ContentView.swift */,
+				B6869CEB27EAC6AD00E46331 /* HomeView.swift */,
 				B6C8863127F056E900875C01 /* SearchBarView.swift */,
 				B688933D27F069870064B020 /* SearchResultsView.swift */,
 				B6EA20CF27EBEBF60052C263 /* ZoomView.swift */,
@@ -118,6 +117,7 @@
 				B6869D0327EAC96800E46331 /* Constants.swift */,
 				B6869D0127EAC96200E46331 /* HTTPClient.swift */,
 				B60292CE27EFE83400C9ABB6 /* Extensions.swift */,
+				B6C8863327F0648200875C01 /* Bundle+Extension.swift */,
 				B6C8863727F064AE00875C01 /* File.json */,
 				B6869D0D27EAEDC600E46331 /* Secrets.xcconfig */,
 			);
@@ -243,7 +243,7 @@
 				B6869D1927EAFD2900E46331 /* WallpaperViewModel.swift in Sources */,
 				B688933E27F069870064B020 /* SearchResultsView.swift in Sources */,
 				B6869D1627EAFBE000E46331 /* ProfileImage.swift in Sources */,
-				B6869CEC27EAC6AD00E46331 /* ContentView.swift in Sources */,
+				B6869CEC27EAC6AD00E46331 /* HomeView.swift in Sources */,
 				B6869CEA27EAC6AD00E46331 /* WallpapersApp.swift in Sources */,
 				B6869D0227EAC96200E46331 /* HTTPClient.swift in Sources */,
 				B688934027F06CF20064B020 /* SearchResults.swift in Sources */,

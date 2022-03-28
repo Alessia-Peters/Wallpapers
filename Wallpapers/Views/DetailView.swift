@@ -31,11 +31,11 @@ struct DetailView: View {
 				.padding()
 				Spacer()
 			}
-			.offset(y: 20)
+			.offset(y: -16)
 			.frame(width: screen.width)
 			
-			
 			Spacer()
+			
 			ZStack {
 				
 				HStack {
@@ -76,7 +76,7 @@ struct DetailView: View {
 							saving = true
 							Task {
 								do {
-									try await viewModel.saveToLibrary(imageString: viewModel.selectedWallpaper!.urls.raw)
+									try await viewModel.saveToLibrary(imageString: viewModel.imageSize())
 								} catch {
 									print(error.localizedDescription)
 								}
@@ -93,22 +93,65 @@ struct DetailView: View {
 									self.value = 0.3
 								}
 						}
+						.contextMenu {
+							Button {
+								viewModel.selectedSize = .raw
+							} label: {
+								HStack {
+									if viewModel.selectedSize == .raw {
+										Image(systemName: "checkmark")
+									}
+									Text("Raw")
+								}
+							}
+							Button {
+								viewModel.selectedSize = .full
+							} label: {
+								HStack {
+									if viewModel.selectedSize == .full {
+										Image(systemName: "checkmark")
+									}
+									Text("Full")
+								}
+							}
+							Button {
+								viewModel.selectedSize = .regular
+							} label: {
+								HStack {
+									if viewModel.selectedSize == .regular {
+										Image(systemName: "checkmark")
+									}
+									Text("Regular")
+								}
+							}
+							Button {
+								viewModel.selectedSize = .small
+							} label: {
+								HStack {
+									if viewModel.selectedSize == .small {
+										Image(systemName: "checkmark")
+									}
+									Text("Small")
+								}
+							}
+
+						}
 						.disabled(saving)
 					}
 					.font(.system(size: 25, weight: .medium))
 					.padding(5)
 				}
 				.padding(.horizontal)
-				.padding(.vertical, 10)
+				.padding(.vertical, 5)
 				.background(
 					.thinMaterial,
-					in: RoundedRectangle(cornerRadius: 20, style: .continuous)
+					in: RoundedRectangle(cornerRadius: 25, style: .continuous)
 				)
 				.padding()
 				.frame(width: screen.width)
 				
 			}
-			.padding(.bottom)
+			.offset(y: 25)
 		}
 		.foregroundColor(.primary)
 	}

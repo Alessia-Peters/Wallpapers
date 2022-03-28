@@ -9,6 +9,7 @@ import SwiftUI
 struct SearchMoreView: View {
     var body: some View {
         Text("Load More")
+			.fontWeight(.medium)
 			.padding(.vertical, 6)
 			.padding(.horizontal)
 			.background(

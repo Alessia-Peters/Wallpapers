@@ -6,6 +6,14 @@
 
 import SwiftUI
 
+enum ImageSizes {
+	case raw, full, regular, small
+}
+
+enum ConnectionState {
+	case connected, connecting, disconnected, noNetwork
+}
+
 extension Array {
 	
 	private func minIndex(someArray: [Double]) -> Int? {

@@ -10,7 +10,7 @@ import SwiftUI
 struct WallpapersApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+			HomeView()
         }
     }
 }

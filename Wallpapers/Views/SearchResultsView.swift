@@ -10,7 +10,6 @@ struct SearchResultsView: View {
 	@ObservedObject var viewModel: SearchingViewModel
 	@ObservedObject var detailViewModel: DetailViewModel
 	
-	@Binding var selectedWallpaper: Wallpaper?
 	@Binding var searchText: String
 	
 	var body: some View {
@@ -21,6 +20,7 @@ struct SearchResultsView: View {
 					WallpaperListView(index: 1, items: viewModel.searchedWallpapers!, viewModel: detailViewModel)
 					WallpaperListView(index: 2, items: viewModel.searchedWallpapers!, viewModel: detailViewModel)
 				}
+				.padding(.horizontal, 6)
 				Button {
 					Task {
 						viewModel.page += 1

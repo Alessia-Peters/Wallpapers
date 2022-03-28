@@ -6,14 +6,14 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
 	
 	@StateObject var wallpapers = WallpaperViewModel()
 	@StateObject var detailViewModel = DetailViewModel()
 	
 	@State var searching = false
 	
-	let screen = UIScreen.main.bounds
+//	let screen = UIScreen.main.bounds
 	
 	var body: some View {
 		ZStack {
@@ -26,23 +26,29 @@ struct ContentView: View {
 						.padding(.horizontal, 90)
 						.padding(.vertical,5)
 						.foregroundColor(.primary)
+						.fixedSize()
 					
-					
-					HStack {
-						WallpaperListView(index: 0, items: wallpapers.allWallpapers, viewModel: detailViewModel)
-						WallpaperListView(index: 1, items: wallpapers.allWallpapers, viewModel: detailViewModel)
-						WallpaperListView(index: 2, items: wallpapers.allWallpapers, viewModel: detailViewModel)
-					}
-					Button {
-						Task {
-							do {
-								try await wallpapers.fetchMore()
-							} catch {
-								print(error)
-							}
+					if wallpapers.connectionState == .connected{
+						HStack {
+							WallpaperListView(index: 0, items: wallpapers.allWallpapers, viewModel: detailViewModel)
+							WallpaperListView(index: 1, items: wallpapers.allWallpapers, viewModel: detailViewModel)
+							WallpaperListView(index: 2, items: wallpapers.allWallpapers, viewModel: detailViewModel)
 						}
-					} label: {
-						SearchMoreView()
+						.padding(.horizontal)
+						Button {
+							Task {
+								do {
+									try await wallpapers.fetchMore()
+								} catch {
+									print(error)
+								}
+							}
+						} label: {
+							SearchMoreView()
+						}
+					} else if wallpapers.connectionState == .noNetwork {
+						Text("Cant connect to server")
+							.opacity(0.4)
 					}
 				}
 				.padding(.horizontal, 6)
@@ -67,7 +73,8 @@ struct ContentView: View {
 				}
 				.foregroundColor(.primary)
 				.padding()
-				.offset(y: -20)
+				.padding(.horizontal, 9)
+				.offset(y: -16)
 				Spacer()
 			}
 			if searching {
@@ -76,7 +83,7 @@ struct ContentView: View {
 			}
 			if detailViewModel.zoomed {
 				ZoomView(viewModel: detailViewModel)
-					.frame(width: screen.width, height: screen.height)
+//					.frame(width: screen.width, height: screen.height)
 					.zIndex(5)
 					.transition(.opacity)
 			}
@@ -93,27 +100,26 @@ struct ContentView: View {
 					.zIndex(5)
 			}
 		}
+		.padding(.horizontal)
 		.onAppear {
-//#if DEBUG
-//			Task {
-//				await wallpapers.fetchFromLibrary()
-//			}
-//#else
 			Task {
 				do {
+					#if DEBUG
+					try await wallpapers.fetchFromLibrary()
+					#else
 					try await wallpapers.fetch()
+					#endif
 				} catch {
 					print(error)
 				}
 			}
-//#endif
 		}
 		.statusBar(hidden: true)
 	}
 }
-
-struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView()
-	}
-}
+//
+//struct ContentView_Previews: PreviewProvider {
+//	static var previews: some View {
+//		HomeView()
+//	}
+//}

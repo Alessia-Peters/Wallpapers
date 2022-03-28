@@ -18,20 +18,21 @@ struct ZoomView: View {
 				image
 					.resizable()
 					.scaledToFill()
+					.ignoresSafeArea()
 				
 			} placeholder: {
 				
-				Color.white
+				Color.white.ignoresSafeArea()
 				CachedAsyncImage(url: URL(string: viewModel.selectedWallpaper!.urls.small), urlCache: .imageCache) { image in
 					image
 						.resizable()
 						.scaledToFill()
-					
+						.ignoresSafeArea()
+
 				} placeholder: {
 					ProgressView()
 				}
 			}
-			.ignoresSafeArea()
 			.onTapGesture {
 				withAnimation {
 					detailShown.toggle()
