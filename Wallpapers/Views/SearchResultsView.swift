@@ -20,12 +20,11 @@ struct SearchResultsView: View {
 					WallpaperListView(index: 1, items: viewModel.searchedWallpapers!, viewModel: detailViewModel)
 					WallpaperListView(index: 2, items: viewModel.searchedWallpapers!, viewModel: detailViewModel)
 				}
-				.padding(.horizontal, 6)
 				Button {
 					Task {
 						viewModel.page += 1
 						do {
-							try await viewModel.searchMore(searchText: searchText)
+							try await viewModel.search(searchText: searchText)
 						} catch {
 							print(error)
 						}
@@ -34,6 +33,7 @@ struct SearchResultsView: View {
 					SearchMoreView()
 				}
 			}
+			.padding(.horizontal, 15)
 		}
 	}
 }

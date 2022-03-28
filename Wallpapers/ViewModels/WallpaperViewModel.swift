@@ -7,7 +7,7 @@
 import SwiftUI
 
 class WallpaperViewModel : ObservableObject {
-	@Published var allWallpapers = [[Wallpaper]]()
+	@Published var allWallpapers: [[Wallpaper]]
 	@Published var popUpText = "Image Saved!"
 	@Published var connectionState: ConnectionState = .disconnected
 	
@@ -22,30 +22,7 @@ class WallpaperViewModel : ObservableObject {
 			throw HTTPError.badResponse
 		}
 		
-		let urlString = Constants.baseUrl + Endpoints.random
-		
-		guard let url = URL(string: urlString) else {
-			throw HTTPError.badUrl
-		}
-		
-		guard let response: [Wallpaper] = try await HTTPClient.shared.fetch(url: url) else {
-			throw HTTPError.badResponse
-		}
-		
-		let splitResponse = response.splitArray(input: response, heights: height)
-		
-		let splitItems = splitResponse.0
-		
-		height = splitResponse.1
-		
-		DispatchQueue.main.async {
-			self.allWallpapers = splitItems
-			self.connectionState = .connected
-		}
-	}
-	
-	func fetchMore() async throws {
-		let urlString = Constants.baseUrl + Endpoints.random
+		let urlString = Constants.baseUrl + Endpoints.random + Parameters.count + "30"
 		
 		guard let url = URL(string: urlString) else {
 			throw HTTPError.badUrl
@@ -65,9 +42,10 @@ class WallpaperViewModel : ObservableObject {
 			self.allWallpapers[0].append(contentsOf: splitItems[0])
 			self.allWallpapers[1].append(contentsOf: splitItems[1])
 			self.allWallpapers[2].append(contentsOf: splitItems[2])
+			self.connectionState = .connected
 		}
 	}
-	
+
 	func fetchFromLibrary() async throws {
 		let data = Bundle.main.decode([Wallpaper].self, from: "File.json")
 		
@@ -88,20 +66,17 @@ class WallpaperViewModel : ObservableObject {
 	func checkConnection() async throws {
 		let url = URL(string: Constants.baseUrl)
 		
-		var request = URLRequest(url: url!)
-		
-		request.httpMethod = HTTPMethods.GET.rawValue
-		request.addValue(HTTPHeaders.authentication.1, forHTTPHeaderField: HTTPHeaders.authentication.0)
-		
-		request.httpMethod = HTTPMethods.GET.rawValue
-		request.addValue(HTTPHeaders.authentication.1, forHTTPHeaderField: HTTPHeaders.authentication.0)
-		request.addValue(HTTPHeaders.apiVersion.1, forHTTPHeaderField: HTTPHeaders.apiVersion.0)
+		let request = URLRequest(url: url!)
 		
 		do {
 			let _ = try await URLSession.shared.data(for: request)
 		} catch {
 			throw HTTPError.badResponse
 		}
+	}
+	
+	init() {
+		allWallpapers = [[Wallpaper](),[Wallpaper](),[Wallpaper]()]
 	}
 }
 

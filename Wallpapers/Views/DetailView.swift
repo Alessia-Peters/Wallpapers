@@ -139,7 +139,7 @@ struct DetailView: View {
 						.disabled(saving)
 					}
 					.font(.system(size: 25, weight: .medium))
-					.padding(5)
+					.padding(6)
 				}
 				.padding(.horizontal)
 				.padding(.vertical, 5)
@@ -151,7 +151,7 @@ struct DetailView: View {
 				.frame(width: screen.width)
 				
 			}
-			.offset(y: 25)
+			.offset(y: 28)
 		}
 		.foregroundColor(.primary)
 	}

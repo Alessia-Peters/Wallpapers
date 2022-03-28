@@ -54,7 +54,6 @@ struct SearchBarView: View {
 						.regularMaterial,
 						in: RoundedRectangle(cornerRadius: 20, style: .continuous)
 					)
-					.padding(.leading, 25)
 					.frame(height: 25)
 					Button {
 						withAnimation {
@@ -64,9 +63,10 @@ struct SearchBarView: View {
 					} label: {
 						Text("Cancel")
 					}
-					.padding(.trailing)
 					.padding(.leading, 5)
 				}
+				.padding(.leading, 25)
+				.padding(.trailing, 25)
 				.offset(y: 8)
 				Spacer()
 				if viewModel.showingResults && viewModel.searchedWallpapers != nil {

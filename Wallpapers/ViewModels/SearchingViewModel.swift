@@ -16,7 +16,7 @@ class SearchingViewModel : ObservableObject {
 	private var height: [Double] = [0,0,0]
 	
 	func search(searchText: String) async throws {
-		let urlString = Constants.baseUrl + Endpoints.search + searchText.replacingOccurrences(of: " ", with: "+")
+		let urlString = Constants.baseUrl + Endpoints.search + searchText.replacingOccurrences(of: " ", with: "+") + Parameters.page + String(page)
 		
 		guard let url = URL(string: urlString) else {
 			throw HTTPError.badUrl
@@ -42,40 +42,20 @@ class SearchingViewModel : ObservableObject {
 		
 		DispatchQueue.main.async {
 			self.height = splitResponse.1
-			self.showingResults = true
-			self.searchedWallpapers = splitItems
-		}
-	}
-	
-	func searchMore(searchText: String) async throws {
-		let urlString = Constants.baseUrl + Endpoints.search + searchText.replacingOccurrences(of: " ", with: "+") + Endpoints.page + String(page)
-		
-		guard let url = URL(string: urlString) else {
-			throw HTTPError.badUrl
-		}
-		
-		guard let response: SearchResults = try await HTTPClient.shared.fetch(url: url) else {
-			throw HTTPError.badResponse
-		}
-		
-		let splitResponse = response.results.splitArray(input: response.results, heights: height)
-		
-		let splitItems = splitResponse.0
-		
-		height = splitResponse.1
-		
-		DispatchQueue.main.async {
 			self.searchedWallpapers![0].append(contentsOf: splitItems[0])
 			self.searchedWallpapers![1].append(contentsOf: splitItems[1])
 			self.searchedWallpapers![2].append(contentsOf: splitItems[2])
+			self.showingResults = true
 		}
 	}
-	
-	
-	
+
 	func resetSearchResults() {
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 			self.searchedWallpapers = nil
 		}
+	}
+	
+	init() {
+		searchedWallpapers =  [[Wallpaper](),[Wallpaper](),[Wallpaper]()]
 	}
 }

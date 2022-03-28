@@ -14,7 +14,7 @@ struct CircleButtonView: View {
 			.frame(width: 25, height: 25)
 			.padding(8)
 			.background(
-				.regularMaterial,
+				.thinMaterial,
 				in: Circle()
 			)
     }

@@ -38,7 +38,7 @@ struct HomeView: View {
 						Button {
 							Task {
 								do {
-									try await wallpapers.fetchMore()
+									try await wallpapers.fetch()
 								} catch {
 									print(error)
 								}
@@ -51,8 +51,8 @@ struct HomeView: View {
 							.opacity(0.4)
 					}
 				}
-				.padding(.horizontal, 6)
 			}
+			.padding(.horizontal, 6)
 			VStack {
 				HStack {
 					Button {
