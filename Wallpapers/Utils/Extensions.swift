@@ -42,36 +42,6 @@ extension Array {
 	}
 }
 
-struct EmptyWallpapers {
-	let wallpapers:[[Wallpaper]] = [[Wallpaper(id: "",
-											   urls: URLs(raw: "",
-														  full: "",
-														  regular: "",
-														  small: "",
-														  thumb: ""),
-											   user: User(username: "",
-														  name: "",
-														  profileImage: ProfileImage(image: "")), height: 0, width: 0)],
-									[Wallpaper(id: "",
-											   urls: URLs(raw: "",
-														  full: "",
-														  regular: "",
-														  small: "",
-														  thumb: ""),
-											   user: User(username: "",
-														  name: "",
-														  profileImage: ProfileImage(image: "")), height: 0, width: 0)],
-									[Wallpaper(id: "",
-											   urls: URLs(raw: "",
-														  full: "",
-														  regular: "",
-														  small: "",
-														  thumb: ""),
-											   user: User(username: "",
-														  name: "",
-														  profileImage: ProfileImage(image: "")), height: 0, width: 0)]]
-}
-
 extension URLCache {
 	static let imageCache = URLCache(memoryCapacity: 512*1000*1000, diskCapacity: 10*1000*1000*1000)
 }
