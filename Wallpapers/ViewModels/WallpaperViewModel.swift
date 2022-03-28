@@ -103,9 +103,5 @@ class WallpaperViewModel : ObservableObject {
 			throw HTTPError.badResponse
 		}
 	}
-	
-	init() {
-//		allWallpapers = EmptyWallpapers.init().wallpapers
-	}
 }
 
