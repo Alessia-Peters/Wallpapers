@@ -13,9 +13,6 @@ struct WallpaperListView: View {
 	
 	@ObservedObject var viewModel: DetailViewModel
 	
-//	@Binding var selectedWallpaper: Wallpaper?
-//	@Binding var zoomed: Bool
-	
     var body: some View {
 		VStack {
 			ForEach(items[index]) { wallpaper in

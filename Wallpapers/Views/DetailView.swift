@@ -11,9 +11,6 @@ struct DetailView: View {
 	
 	@ObservedObject var viewModel: DetailViewModel
 	
-//	@Binding var zoomed: Bool
-//	@Binding var wallpaper: Wallpaper
-	
 	@State var liked = false
 	@State var saving = false
 	@State private var value = 1.0

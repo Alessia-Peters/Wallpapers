@@ -11,6 +11,8 @@ class SearchingViewModel : ObservableObject {
 	@Published var searchedWallpapers: [[Wallpaper]]?
 	@Published var page = 1
 	
+	private var height: [Double] = [0,0,0]
+	
 	func search(searchText: String) async throws {
 		let urlString = Constants.baseUrl + Endpoints.search + searchText
 		
@@ -22,10 +24,14 @@ class SearchingViewModel : ObservableObject {
 			throw HTTPError.badResponse
 		}
 		
-		let splitResponse = response.results.split()
+		let splitResponse = response.results.splitArray(input: response.results, heights: height)
+		
+		let splitItems = splitResponse.0
+		
+		height = splitResponse.1
 		
 		DispatchQueue.main.async {
-			self.searchedWallpapers = splitResponse
+			self.searchedWallpapers = splitItems
 		}
 	}
 	
@@ -40,12 +46,16 @@ class SearchingViewModel : ObservableObject {
 			throw HTTPError.badResponse
 		}
 		
-		let splitResponse = response.results.split()
+		let splitResponse = response.results.splitArray(input: response.results, heights: height)
+		
+		let splitItems = splitResponse.0
+		
+		height = splitResponse.1
 		
 		DispatchQueue.main.async {
-			self.searchedWallpapers![0].append(contentsOf: splitResponse[0])
-			self.searchedWallpapers![1].append(contentsOf: splitResponse[1])
-			self.searchedWallpapers![2].append(contentsOf: splitResponse[2])
+			self.searchedWallpapers![0].append(contentsOf: splitItems[0])
+			self.searchedWallpapers![1].append(contentsOf: splitItems[1])
+			self.searchedWallpapers![2].append(contentsOf: splitItems[2])
 		}
 	}
 	

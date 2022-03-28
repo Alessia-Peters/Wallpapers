@@ -10,10 +10,7 @@ import CachedAsyncImage
 struct ZoomView: View {
 	@ObservedObject var viewModel: DetailViewModel
 	
-	//	@State var wallpaper: Wallpaper
 	@State var detailShown = true
-	
-	//	@Binding var zoomed: Bool
 	
 	var body: some View {
 		ZStack{

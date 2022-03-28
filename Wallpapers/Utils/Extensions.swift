@@ -7,13 +7,30 @@
 import SwiftUI
 
 extension Array {
-	func split() -> [[Element]] {
-		let ct = self.count
-		let third = ct / 3
-		let splitOne = self[0 ..< third]
-		let splitTwo = self[third ..< third * 2]
-		let splitThree = self[third * 2 ..< ct]
-		return [Array(splitOne), Array(splitTwo), Array(splitThree)]
+	
+	private func minIndex(someArray: [Double]) -> Int? {
+		return someArray.indices.min { someArray[$0] < someArray[$1] }
+	}
+	
+	func splitArray(input: [Wallpaper], heights: [Double]) -> ([[Wallpaper]],[Double]) {
+		
+		var splitArray = [[Wallpaper](),[Wallpaper](),[Wallpaper]()]
+		
+		var itemHeights = heights
+		
+		input.forEach { item in
+			
+			let itemHeight: Double = Double(item.height) / Double(item.width)
+			
+			let randomPosition = (0...2).randomElement() /// Creates random position of nil is thrown
+			
+			let smallestHeight = minIndex(someArray: itemHeights) /// Calculates smalled position in itemheights
+			
+			splitArray[(smallestHeight ?? randomPosition)!].append(item) /// Adds wallpaper to smallest array or random array
+			itemHeights[(smallestHeight ?? randomPosition)!] += itemHeight /// Adds height to corresponding height
+		}
+		
+		return (splitArray, itemHeights)
 	}
 }
 
@@ -26,7 +43,7 @@ struct EmptyWallpapers {
 														  thumb: ""),
 											   user: User(username: "",
 														  name: "",
-														  profileImage: ProfileImage(image: "")), height: 0)],
+														  profileImage: ProfileImage(image: "")), height: 0, width: 0)],
 									[Wallpaper(id: "",
 											   urls: URLs(raw: "",
 														  full: "",
@@ -35,7 +52,7 @@ struct EmptyWallpapers {
 														  thumb: ""),
 											   user: User(username: "",
 														  name: "",
-														  profileImage: ProfileImage(image: "")), height: 0)],
+														  profileImage: ProfileImage(image: "")), height: 0, width: 0)],
 									[Wallpaper(id: "",
 											   urls: URLs(raw: "",
 														  full: "",
@@ -44,7 +61,7 @@ struct EmptyWallpapers {
 														  thumb: ""),
 											   user: User(username: "",
 														  name: "",
-														  profileImage: ProfileImage(image: "")), height: 0)]]
+														  profileImage: ProfileImage(image: "")), height: 0, width: 0)]]
 }
 
 extension URLCache {

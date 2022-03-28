@@ -38,6 +38,7 @@
 		B60292CE27EFE83400C9ABB6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B62B5E0527F0720E00570BB0 /* SearchingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingViewModel.swift; sourceTree = "<group>"; };
 		B62B5E0927F074DC00570BB0 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		B62B7AC527F1315C00F9515D /* Wallpapers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallpapers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6869CE927EAC6AD00E46331 /* WallpapersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpapersApp.swift; sourceTree = "<group>"; };
 		B6869CEB27EAC6AD00E46331 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B6869CED27EAC6AE00E46331 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -56,7 +57,6 @@
 		B6C8861327F0042400875C01 /* WallpaperListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperListView.swift; sourceTree = "<group>"; };
 		B6C8861A27F00F4C00875C01 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		B6C8862027F027F400875C01 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
-		B6C8862D27F0518300875C01 /* Wallpapers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Wallpapers.app; path = "/Users/Skyla/Library/Mobile Documents/com~apple~CloudDocs/Xcode/Active Projects/Wallpapers/build/Debug-iphoneos/Wallpapers.app"; sourceTree = "<absolute>"; };
 		B6C8862E27F0523A00875C01 /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
 		B6C8863127F056E900875C01 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		B6C8863327F0648200875C01 /* Bundle+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
@@ -80,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				B6869CE827EAC6AD00E46331 /* Wallpapers */,
+				B62B7AC527F1315C00F9515D /* Wallpapers.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,7 +107,7 @@
 				B688933D27F069870064B020 /* SearchResultsView.swift */,
 				B6EA20CF27EBEBF60052C263 /* ZoomView.swift */,
 				B6C8861A27F00F4C00875C01 /* DetailView.swift */,
-				B6C8863027F056D900875C01 /* Helper View */,
+				B6C8863027F056D900875C01 /* Helper Views */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -145,7 +146,7 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		B6C8863027F056D900875C01 /* Helper View */ = {
+		B6C8863027F056D900875C01 /* Helper Views */ = {
 			isa = PBXGroup;
 			children = (
 				B6C8861327F0042400875C01 /* WallpaperListView.swift */,
@@ -153,7 +154,7 @@
 				B6C8862027F027F400875C01 /* PopUpView.swift */,
 				B6BADDD427F122220040C1DF /* SearchMoreView.swift */,
 			);
-			path = "Helper View";
+			path = "Helper Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,7 +177,7 @@
 				B6C8862327F0369400875C01 /* CachedAsyncImage */,
 			);
 			productName = Wallpapers;
-			productReference = B6C8862D27F0518300875C01 /* Wallpapers.app */;
+			productReference = B62B7AC527F1315C00F9515D /* Wallpapers.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

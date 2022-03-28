@@ -11,8 +11,6 @@ struct ContentView: View {
 	@StateObject var wallpapers = WallpaperViewModel()
 	@StateObject var detailViewModel = DetailViewModel()
 	
-//	@State var selectedWallpaper: Wallpaper? = nil
-//	@State var zoomed = false
 	@State var searching = false
 	
 	let screen = UIScreen.main.bounds
@@ -34,6 +32,17 @@ struct ContentView: View {
 						WallpaperListView(index: 0, items: wallpapers.allWallpapers, viewModel: detailViewModel)
 						WallpaperListView(index: 1, items: wallpapers.allWallpapers, viewModel: detailViewModel)
 						WallpaperListView(index: 2, items: wallpapers.allWallpapers, viewModel: detailViewModel)
+					}
+					Button {
+						Task {
+							do {
+								try await wallpapers.fetchMore()
+							} catch {
+								print(error)
+							}
+						}
+					} label: {
+						SearchMoreView()
 					}
 				}
 				.padding(.horizontal, 6)

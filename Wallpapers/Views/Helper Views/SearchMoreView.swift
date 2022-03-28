@@ -15,6 +15,7 @@ struct SearchMoreView: View {
 				.regularMaterial,
 				in: RoundedRectangle(cornerRadius: 20, style: .continuous)
 			)
+			.padding()
     }
 }
 
