@@ -28,10 +28,15 @@ struct DetailView: View {
 				} label: {
 					CircleButtonView(symbol: "arrow.left")
 				}
-				.padding(.horizontal)
 				Spacer()
+				Button {
+					
+				} label: {
+					CircleButtonView(symbol: "info")
+				}
+
 			}
-			.padding(.horizontal, 9)
+			.padding(.horizontal, 24)
 			
 			Spacer()
 			
