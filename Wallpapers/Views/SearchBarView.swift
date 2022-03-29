@@ -18,7 +18,7 @@ struct SearchBarView: View {
 	@State var searchText = String()
 	@Binding var searching: Bool
 	
-	let screen = UIScreen.main.bounds
+	private let screen = UIScreen.main.bounds
 	
 	var body: some View {
 		ZStack {
@@ -36,6 +36,7 @@ struct SearchBarView: View {
 							.textFieldStyle(.plain)
 						
 						Button {
+							viewModel.resetSearchResults()
 							viewModel.noResults = false
 							Task {
 								do {
@@ -48,6 +49,7 @@ struct SearchBarView: View {
 							Image(systemName: "magnifyingglass")
 						}
 						.padding(.trailing)
+						.disabled(searchText == "")
 						
 					}
 					.background(

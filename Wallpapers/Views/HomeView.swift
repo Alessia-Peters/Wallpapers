@@ -23,6 +23,7 @@ struct HomeView: View {
 						.frame(height: 30)
 						.padding(.horizontal, 90)
 						.padding(.vertical,5)
+						.padding(.bottom)
 						.foregroundColor(.primary)
 						.fixedSize()
 					
@@ -45,8 +46,20 @@ struct HomeView: View {
 							SearchMoreView()
 						}
 					} else if wallpapers.connectionState == .noNetwork {
-						Text("Cant connect to server")
-							.opacity(0.4)
+						Button {
+							Task {
+								do {
+									try await wallpapers.fetch()
+								} catch {
+									print(error)
+								}
+							}
+						} label: {
+							Text("Cant connect to server, tap to retry")
+								.opacity(0.4)
+								.foregroundColor(.primary)
+						}
+						.padding(.top, 20)
 					}
 				}
 			}
@@ -81,9 +94,10 @@ struct HomeView: View {
 			}
 			if detailViewModel.zoomed {
 				ZoomView(viewModel: detailViewModel)
-//					.frame(width: screen.width, height: screen.height)
-					.zIndex(5)
+
 					.transition(.opacity)
+					.zIndex(5)
+				
 			}
 			if detailViewModel.popUpActive {
 				PopUpView(text: "Image Saved!")
@@ -102,17 +116,18 @@ struct HomeView: View {
 		.onAppear {
 			Task {
 				do {
-					#if DEBUG
+#if DEBUG
 					try await wallpapers.fetchFromLibrary()
-					#else
+#else
 					try await wallpapers.fetch()
-					#endif
+#endif
 				} catch {
 					print(error)
 				}
 			}
 		}
 		.statusBar(hidden: true)
+		//		.frame(width: screen.width, height: screen.height)
 	}
 }
 //

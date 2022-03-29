@@ -28,11 +28,10 @@ struct DetailView: View {
 				} label: {
 					CircleButtonView(symbol: "arrow.left")
 				}
-				.padding()
+				.padding(.horizontal)
 				Spacer()
 			}
-			.offset(y: -16)
-			.frame(width: screen.width)
+			.padding(.horizontal, 9)
 			
 			Spacer()
 			
@@ -142,16 +141,13 @@ struct DetailView: View {
 					.padding(6)
 				}
 				.padding(.horizontal)
-				.padding(.vertical, 5)
+				.padding(.vertical, 8)
 				.background(
 					.thinMaterial,
 					in: RoundedRectangle(cornerRadius: 25, style: .continuous)
 				)
-				.padding()
-				.frame(width: screen.width)
-				
+				.padding(.horizontal)
 			}
-			.offset(y: 28)
 		}
 		.foregroundColor(.primary)
 	}

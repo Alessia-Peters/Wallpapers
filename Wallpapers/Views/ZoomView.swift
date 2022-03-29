@@ -10,29 +10,33 @@ import CachedAsyncImage
 struct ZoomView: View {
 	@ObservedObject var viewModel: DetailViewModel
 	
+	private let screen = UIScreen.main.bounds
+	
 	@State var detailShown = true
 	
 	var body: some View {
 		ZStack{
-			CachedAsyncImage(url: URL(string: viewModel.selectedWallpaper!.urls.full)!, urlCache: .imageCache) { image in
-				image
-					.resizable()
-					.scaledToFill()
-					.ignoresSafeArea()
-				
-			} placeholder: {
-				
-				Color.white.ignoresSafeArea()
-				CachedAsyncImage(url: URL(string: viewModel.selectedWallpaper!.urls.small), urlCache: .imageCache) { image in
+			Color.white.ignoresSafeArea()
+			ZStack {
+				AsyncImage(url: URL(string: viewModel.selectedWallpaper!.urls.full)!) { image in
 					image
 						.resizable()
-						.scaledToFill()
-						.ignoresSafeArea()
-
+						.aspectRatio(contentMode: .fill)
+						.frame(minWidth: 0, maxWidth: .infinity)
+					
 				} placeholder: {
-					ProgressView()
+					CachedAsyncImage(url: URL(string: viewModel.selectedWallpaper!.urls.thumb), urlCache: .imageCache) { image in
+						image
+							.resizable()
+							.aspectRatio(contentMode: .fill)
+							.frame(minWidth: 0, maxWidth: .infinity)
+						
+					} placeholder: {
+						ProgressView()
+					}
 				}
 			}
+			.ignoresSafeArea()
 			.onTapGesture {
 				withAnimation {
 					detailShown.toggle()

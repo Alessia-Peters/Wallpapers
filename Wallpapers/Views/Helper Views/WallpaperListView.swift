@@ -22,7 +22,7 @@ struct WallpaperListView: View {
 						viewModel.zoomed = true
 					}
 				} label: {
-					CachedAsyncImage(url: URL(string: wallpaper.urls.small), urlCache: .imageCache) { image in
+					CachedAsyncImage(url: URL(string: wallpaper.urls.thumb), urlCache: .imageCache) { image in
 						image
 							.resizable()
 							.scaledToFit()

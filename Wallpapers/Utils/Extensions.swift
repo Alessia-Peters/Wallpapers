@@ -28,7 +28,7 @@ extension Array {
 		
 		input.forEach { item in
 			
-			let itemHeight: Double = Double(item.height) / Double(item.width)
+			let itemHeight: Double = Double(item.height) / Double(item.width) /// Calculates the ratio of the height and width of the image
 			
 			let randomPosition = (0...2).randomElement() /// Creates random position of nil is thrown
 			

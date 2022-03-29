@@ -50,9 +50,7 @@ class SearchingViewModel : ObservableObject {
 	}
 
 	func resetSearchResults() {
-		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-			self.searchedWallpapers = nil
-		}
+			self.searchedWallpapers = [[Wallpaper](),[Wallpaper](),[Wallpaper]()]
 	}
 	
 	init() {
