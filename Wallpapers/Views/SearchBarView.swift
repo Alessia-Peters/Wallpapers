@@ -34,6 +34,18 @@ struct SearchBarView: View {
 							.padding()
 							.frame(height: 40)
 							.textFieldStyle(.plain)
+							.submitLabel(.search)
+							.onSubmit {
+								viewModel.resetSearchResults()
+								viewModel.noResults = false
+								Task {
+									do {
+										try await viewModel.search(searchText: searchText)
+									} catch {
+										print("Error: \(error)")
+									}
+								}
+							}
 						
 						Button {
 							viewModel.resetSearchResults()
