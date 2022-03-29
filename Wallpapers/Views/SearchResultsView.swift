@@ -33,13 +33,17 @@ struct SearchResultsView: View {
 					SearchMoreView()
 				}
 			}
-			.padding(.horizontal, 15)
+			.padding(.horizontal)
+			.padding(.top)
 		}
 	}
 }
 
-//struct SearchResultView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SearchResultsView()
-//    }
-//}
+struct SearchResultView_Previews: PreviewProvider {
+    static var previews: some View {
+		let viewModel = SearchingViewModel()
+		let detailViewModel = DetailViewModel()
+		
+		SearchResultsView(viewModel: viewModel, detailViewModel: detailViewModel, searchText: .constant(""))
+    }
+}

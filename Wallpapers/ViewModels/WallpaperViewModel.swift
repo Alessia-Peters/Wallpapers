@@ -11,13 +11,14 @@ class WallpaperViewModel : ObservableObject {
 	@Published var allWallpapers: [[Wallpaper]]
 	@Published var popUpText = "Image Saved!"
 	@Published var connectionState: ConnectionState = .disconnected
+	@Published var popUpActive = false
 	
 	private var height: [Double] = [0,0,0]
 	
 	func fetch() async throws {
 		
 		do {
-			try await checkConnection()
+			try await HTTPClient.shared.checkConnection()
 		} catch {
 			connectionState = .noNetwork
 			throw HTTPError.badResponse
@@ -46,7 +47,7 @@ class WallpaperViewModel : ObservableObject {
 			self.connectionState = .connected
 		}
 	}
-
+	
 	func fetchFromLibrary() async throws {
 		let data = Bundle.main.decode([Wallpaper].self, from: "File.json")
 		
@@ -62,17 +63,16 @@ class WallpaperViewModel : ObservableObject {
 		}
 	}
 	
-	
-	/// Runs on app launch, checks to see if server can be reached
-	func checkConnection() async throws {
-		let url = URL(string: Constants.baseUrl)
+	func saveToLibrary(imageString: String) async throws {
 		
-		let request = URLRequest(url: url!)
+		let image = try await HTTPClient.shared.fetchImage(imageString: imageString)
 		
-		do {
-			let _ = try await URLSession.shared.data(for: request)
-		} catch {
-			throw HTTPError.badResponse
+		UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+		
+		DispatchQueue.main.async {
+			withAnimation {
+				self.popUpActive = true
+			}
 		}
 	}
 	

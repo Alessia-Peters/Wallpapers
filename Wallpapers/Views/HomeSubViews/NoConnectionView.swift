@@ -19,7 +19,7 @@ struct NoConnectionView: View {
 				}
 			}
 		} label: {
-			Text("Cant connect to server, tap to retry")
+			Text("Can't connect to server, tap to retry")
 				.opacity(0.4)
 				.foregroundColor(.primary)
 		}

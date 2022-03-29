@@ -10,6 +10,7 @@ struct DetailView: View {
 	@Environment(\.colorScheme) var colorScheme
 	
 	@ObservedObject var viewModel: DetailViewModel
+	@ObservedObject var wallpaperViewModel: WallpaperViewModel
 	
 	@State var liked = false
 	@State var saving = false
@@ -34,9 +35,10 @@ struct DetailView: View {
 				} label: {
 					CircleButtonView(symbol: "info")
 				}
-
+				
 			}
-			.padding(.horizontal, 24)
+			.padding(.top, 15)
+			.padding(.horizontal, 18)
 			
 			Spacer()
 			
@@ -53,6 +55,7 @@ struct DetailView: View {
 					}
 					.frame(width: 65, height: 65)
 					.clipShape(Circle())
+					.padding(.trailing, 7)
 					
 					VStack(alignment: .leading) {
 						Text(viewModel.selectedWallpaper!.user.name)
@@ -62,7 +65,7 @@ struct DetailView: View {
 					}
 					.lineLimit(1)
 					.minimumScaleFactor(0.5)
-					.padding()
+					
 					
 					Spacer()
 					
@@ -80,12 +83,9 @@ struct DetailView: View {
 							saving = true
 							Task {
 								do {
-									try await viewModel.saveToLibrary(imageString: viewModel.imageSize())
+									try await wallpaperViewModel.saveToLibrary(imageString: viewModel.imageSize())
 								} catch {
 									print(error.localizedDescription)
-								}
-								withAnimation {
-									viewModel.popUpActive = true
 								}
 								saving = false
 							}
@@ -138,20 +138,21 @@ struct DetailView: View {
 									Text("Small")
 								}
 							}
-
+							
 						}
 						.disabled(saving)
 					}
 					.font(.system(size: 25, weight: .medium))
 					.padding(6)
 				}
-				.padding(.horizontal)
-				.padding(.vertical, 8)
+				.padding(.horizontal, 15)
+				.padding(.vertical, 15)
 				.background(
 					.thinMaterial,
 					in: RoundedRectangle(cornerRadius: 25, style: .continuous)
 				)
-				.padding(.horizontal)
+				.padding(.horizontal, 18)
+				.padding(.bottom)
 			}
 		}
 		.foregroundColor(.primary)

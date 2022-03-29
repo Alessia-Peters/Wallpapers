@@ -8,7 +8,9 @@ import SwiftUI
 import CachedAsyncImage
 
 struct ZoomView: View {
+	
 	@ObservedObject var viewModel: DetailViewModel
+	@ObservedObject var wallpaperViewModel: WallpaperViewModel
 	
 	private let screen = UIScreen.main.bounds
 	
@@ -16,7 +18,7 @@ struct ZoomView: View {
 	
 	var body: some View {
 		ZStack{
-			Color.white.ignoresSafeArea()
+			Color.white.ignoresSafeArea().frame(minWidth: 0, maxWidth: .infinity)
 			ZStack {
 				AsyncImage(url: URL(string: viewModel.selectedWallpaper!.urls.full)!) { image in
 					image
@@ -43,7 +45,7 @@ struct ZoomView: View {
 				}
 			}
 			
-			DetailView(viewModel: viewModel)
+			DetailView(viewModel: viewModel, wallpaperViewModel: wallpaperViewModel)
 				.opacity(detailShown ? 1 : 0)
 				.disabled(detailShown ? false : true)
 		}

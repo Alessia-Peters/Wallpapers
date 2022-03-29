@@ -12,10 +12,21 @@ class SearchingViewModel : ObservableObject {
 	@Published var showingResults = false
 	@Published var page = 1
 	@Published var noResults = false
+	@Published var connectionState: ConnectionState = .disconnected
 	
 	private var height: [Double] = [0,0,0]
 	
 	func search(searchText: String) async throws {
+		
+		do {
+			try await HTTPClient.shared.checkConnection()
+		} catch {
+			DispatchQueue.main.async {
+				self.connectionState = .noNetwork
+			}
+			throw HTTPError.badResponse
+		}
+		
 		let urlString = Constants.baseUrl + Endpoints.search + searchText.replacingOccurrences(of: " ", with: "+") + Parameters.page + String(page)
 		
 		guard let url = URL(string: urlString) else {
@@ -48,9 +59,9 @@ class SearchingViewModel : ObservableObject {
 			self.showingResults = true
 		}
 	}
-
+	
 	func resetSearchResults() {
-			self.searchedWallpapers = [[Wallpaper](),[Wallpaper](),[Wallpaper]()]
+		self.searchedWallpapers = [[Wallpaper](),[Wallpaper](),[Wallpaper]()]
 	}
 	
 	init() {

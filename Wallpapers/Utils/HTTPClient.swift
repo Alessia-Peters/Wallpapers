@@ -64,4 +64,17 @@ class HTTPClient {
 		
 		return image
 	}
+	
+	/// Runs on app launch, checks to see if server can be reached
+	func checkConnection() async throws {
+		let url = URL(string: Constants.baseUrl)
+		
+		let request = URLRequest(url: url!)
+		
+		do {
+			let _ = try await URLSession.shared.data(for: request)
+		} catch {
+			throw HTTPError.badResponse
+		}
+	}
 }

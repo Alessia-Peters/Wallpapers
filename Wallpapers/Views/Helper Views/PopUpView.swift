@@ -18,7 +18,6 @@ struct PopUpView: View {
 				.ultraThinMaterial,
 				in: RoundedRectangle(cornerRadius: 15)
 			)
-			.padding(.top, 40)
 			Spacer()
 		}
     }

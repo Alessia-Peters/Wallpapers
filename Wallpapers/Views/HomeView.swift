@@ -22,19 +22,17 @@ struct HomeView: View {
 						.scaledToFit()
 						.frame(height: 30)
 						.padding(.horizontal, 90)
-						.padding(.vertical,5)
-						.padding(.bottom)
-						.foregroundColor(.primary)
+						.padding(.vertical, 20)
 						.fixedSize()
 					
-					if wallpapers.connectionState == .connected{
+					if wallpapers.connectionState == .connected {
 						ConnectedView(wallpapers: wallpapers, detailViewModel: detailViewModel)
 					} else if wallpapers.connectionState == .noNetwork {
 						NoConnectionView(wallpapers: wallpapers)
 					}
 				}
 			}
-			.padding(.horizontal, 6)
+			
 			VStack {
 				HStack {
 					Button {
@@ -55,27 +53,26 @@ struct HomeView: View {
 				}
 				.foregroundColor(.primary)
 				.padding()
-				.padding(.horizontal, 9)
-				.offset(y: -16)
+				.padding(.horizontal, 3)
 				Spacer()
 			}
 			if searching {
-				SearchBarView(detailViewModel: detailViewModel, searching: $searching)
+				SearchBarView(detailViewModel: detailViewModel, wallpaperViewModel: wallpapers, searching: $searching)
 					.zIndex(5)
 			}
 			if detailViewModel.zoomed {
-				ZoomView(viewModel: detailViewModel)
+				ZoomView(viewModel: detailViewModel, wallpaperViewModel: wallpapers)
 
 					.transition(.opacity)
 					.zIndex(5)
 				
 			}
-			if detailViewModel.popUpActive {
+			if wallpapers.popUpActive {
 				PopUpView(text: "Image Saved!")
 					.onAppear {
 						DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
 							withAnimation {
-								detailViewModel.popUpActive = false
+								wallpapers.popUpActive = false
 							}
 						}
 					}
@@ -83,7 +80,6 @@ struct HomeView: View {
 					.zIndex(5)
 			}
 		}
-		.padding(.horizontal)
 		.onAppear {
 			Task {
 				do {
