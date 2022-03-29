@@ -28,38 +28,9 @@ struct HomeView: View {
 						.fixedSize()
 					
 					if wallpapers.connectionState == .connected{
-						HStack {
-							WallpaperListView(index: 0, items: wallpapers.allWallpapers, viewModel: detailViewModel)
-							WallpaperListView(index: 1, items: wallpapers.allWallpapers, viewModel: detailViewModel)
-							WallpaperListView(index: 2, items: wallpapers.allWallpapers, viewModel: detailViewModel)
-						}
-						.padding(.horizontal)
-						Button {
-							Task {
-								do {
-									try await wallpapers.fetch()
-								} catch {
-									print(error)
-								}
-							}
-						} label: {
-							SearchMoreView()
-						}
+						ConnectedView(wallpapers: wallpapers, detailViewModel: detailViewModel)
 					} else if wallpapers.connectionState == .noNetwork {
-						Button {
-							Task {
-								do {
-									try await wallpapers.fetch()
-								} catch {
-									print(error)
-								}
-							}
-						} label: {
-							Text("Cant connect to server, tap to retry")
-								.opacity(0.4)
-								.foregroundColor(.primary)
-						}
-						.padding(.top, 20)
+						NoConnectionView(wallpapers: wallpapers)
 					}
 				}
 			}
@@ -127,7 +98,6 @@ struct HomeView: View {
 			}
 		}
 		.statusBar(hidden: true)
-		//		.frame(width: screen.width, height: screen.height)
 	}
 }
 //

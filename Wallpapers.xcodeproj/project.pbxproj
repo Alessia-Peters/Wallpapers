@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B60292CF27EFE83400C9ABB6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60292CE27EFE83400C9ABB6 /* Extensions.swift */; };
+		B603E81027F2C8EB0013A3C1 /* NoConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B603E80F27F2C8EB0013A3C1 /* NoConnectionView.swift */; };
+		B603E81327F2C9640013A3C1 /* ConnectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B603E81227F2C9640013A3C1 /* ConnectedView.swift */; };
 		B62B5E0627F0720E00570BB0 /* SearchingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B5E0527F0720E00570BB0 /* SearchingViewModel.swift */; };
 		B62B5E0A27F074DC00570BB0 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B5E0927F074DC00570BB0 /* DetailViewModel.swift */; };
 		B6869CEA27EAC6AD00E46331 /* WallpapersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6869CE927EAC6AD00E46331 /* WallpapersApp.swift */; };
@@ -36,6 +38,8 @@
 
 /* Begin PBXFileReference section */
 		B60292CE27EFE83400C9ABB6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B603E80F27F2C8EB0013A3C1 /* NoConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoConnectionView.swift; sourceTree = "<group>"; };
+		B603E81227F2C9640013A3C1 /* ConnectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedView.swift; sourceTree = "<group>"; };
 		B62B5E0527F0720E00570BB0 /* SearchingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingViewModel.swift; sourceTree = "<group>"; };
 		B62B5E0927F074DC00570BB0 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		B62B7AC527F1315C00F9515D /* Wallpapers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallpapers.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +80,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B603E81127F2C8EF0013A3C1 /* HomeSubViews */ = {
+			isa = PBXGroup;
+			children = (
+				B603E81227F2C9640013A3C1 /* ConnectedView.swift */,
+				B603E80F27F2C8EB0013A3C1 /* NoConnectionView.swift */,
+			);
+			path = HomeSubViews;
+			sourceTree = "<group>";
+		};
 		B6869CDD27EAC6AD00E46331 = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				B6869CEB27EAC6AD00E46331 /* HomeView.swift */,
+				B603E81127F2C8EF0013A3C1 /* HomeSubViews */,
 				B6C8863127F056E900875C01 /* SearchBarView.swift */,
 				B688933D27F069870064B020 /* SearchResultsView.swift */,
 				B6EA20CF27EBEBF60052C263 /* ZoomView.swift */,
@@ -248,10 +262,12 @@
 				B6869D0227EAC96200E46331 /* HTTPClient.swift in Sources */,
 				B688934027F06CF20064B020 /* SearchResults.swift in Sources */,
 				B60292CF27EFE83400C9ABB6 /* Extensions.swift in Sources */,
+				B603E81027F2C8EB0013A3C1 /* NoConnectionView.swift in Sources */,
 				B6869D1427EAF3FB00E46331 /* User.swift in Sources */,
 				B6C8863227F056E900875C01 /* SearchBarView.swift in Sources */,
 				B62B5E0A27F074DC00570BB0 /* DetailViewModel.swift in Sources */,
 				B6C8861427F0042400875C01 /* WallpaperListView.swift in Sources */,
+				B603E81327F2C9640013A3C1 /* ConnectedView.swift in Sources */,
 				B6869D0927EACD0D00E46331 /* Wallpaper.swift in Sources */,
 				B6869D0427EAC96800E46331 /* Constants.swift in Sources */,
 				B62B5E0627F0720E00570BB0 /* SearchingViewModel.swift in Sources */,
