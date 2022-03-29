@@ -9,20 +9,23 @@ import SwiftUI
 
 struct NoConnectionView: View {
 	@ObservedObject var wallpapers: WallpaperViewModel
-    var body: some View {
-		Button {
-			Task {
-				do {
-					try await wallpapers.fetch()
-				} catch {
-					print(error)
+	
+	let screen = UIScreen.main.bounds
+	
+	var body: some View {
+			Button {
+				Task {
+					do {
+						try await wallpapers.fetch()
+					} catch {
+						print(error)
+					}
 				}
+			} label: {
+				Text("Can't connect to server, tap to retry")
+					.opacity(0.4)
+					.foregroundColor(.primary)
 			}
-		} label: {
-			Text("Can't connect to server, tap to retry")
-				.opacity(0.4)
-				.foregroundColor(.primary)
-		}
-		.padding(.top, 20)
-    }
+			.padding(.top, screen.height / 3)
+	}
 }

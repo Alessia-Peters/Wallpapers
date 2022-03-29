@@ -20,7 +20,9 @@ class WallpaperViewModel : ObservableObject {
 		do {
 			try await HTTPClient.shared.checkConnection()
 		} catch {
-			connectionState = .noNetwork
+			DispatchQueue.main.async {
+				self.connectionState = .noNetwork
+			}
 			throw HTTPError.badResponse
 		}
 		
