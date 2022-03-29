@@ -24,6 +24,7 @@
 		B6869D1927EAFD2900E46331 /* WallpaperViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6869D1827EAFD2900E46331 /* WallpaperViewModel.swift */; };
 		B688933E27F069870064B020 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B688933D27F069870064B020 /* SearchResultsView.swift */; };
 		B688934027F06CF20064B020 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B688933F27F06CF20064B020 /* SearchResults.swift */; };
+		B68D514027F3D43900CB318B /* SaveButtonOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68D513F27F3D43900CB318B /* SaveButtonOptions.swift */; };
 		B6BADDD527F122220040C1DF /* SearchMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BADDD427F122220040C1DF /* SearchMoreView.swift */; };
 		B6C8861427F0042400875C01 /* WallpaperListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C8861327F0042400875C01 /* WallpaperListView.swift */; };
 		B6C8861B27F00F4C00875C01 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C8861A27F00F4C00875C01 /* DetailView.swift */; };
@@ -57,6 +58,7 @@
 		B6869D1827EAFD2900E46331 /* WallpaperViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperViewModel.swift; sourceTree = "<group>"; };
 		B688933D27F069870064B020 /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
 		B688933F27F06CF20064B020 /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
+		B68D513F27F3D43900CB318B /* SaveButtonOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButtonOptions.swift; sourceTree = "<group>"; };
 		B6BADDD427F122220040C1DF /* SearchMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoreView.swift; sourceTree = "<group>"; };
 		B6C8861327F0042400875C01 /* WallpaperListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperListView.swift; sourceTree = "<group>"; };
 		B6C8861A27F00F4C00875C01 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				B6C8862E27F0523A00875C01 /* CircleButtonView.swift */,
 				B6C8862027F027F400875C01 /* PopUpView.swift */,
 				B6BADDD427F122220040C1DF /* SearchMoreView.swift */,
+				B68D513F27F3D43900CB318B /* SaveButtonOptions.swift */,
 			);
 			path = "Helper Views";
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				B6869D0927EACD0D00E46331 /* Wallpaper.swift in Sources */,
 				B6869D0427EAC96800E46331 /* Constants.swift in Sources */,
 				B62B5E0627F0720E00570BB0 /* SearchingViewModel.swift in Sources */,
+				B68D514027F3D43900CB318B /* SaveButtonOptions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
