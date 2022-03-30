@@ -12,6 +12,7 @@ struct ExtraInfoView: View {
 	var text: String
     var body: some View {
 		ZStack {
+			Color.clear
 			VStack(alignment: .leading) {
 				Text(title)
 					.font(.system(size: 50, weight: .bold))
@@ -22,7 +23,7 @@ struct ExtraInfoView: View {
 			.frame(height: 300)
 			.padding()
 			.background(
-				.regularMaterial,
+				.ultraThinMaterial,
 				in: RoundedRectangle(cornerRadius: 20)
 			)
 			.padding()

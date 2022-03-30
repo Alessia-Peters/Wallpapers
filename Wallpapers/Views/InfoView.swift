@@ -70,6 +70,12 @@ struct InfoView: View {
 					)
 					.padding(20)
 					
+					if (detailViewModel.selectedWallpaper!.user.twitter != nil) || (detailViewModel.selectedWallpaper!.user.instagram != nil) {
+						Divider()
+							.padding(.horizontal, 20)
+							.padding(.bottom, 10)
+					}
+					
 					if detailViewModel.selectedWallpaper!.user.twitter != nil {
 						Link(destination: URL(string: "https://twitter.com/\(detailViewModel.selectedWallpaper!.user.twitter!)")!) {
 							LinkBackground(text: "Twitter", backgroundColor: 0x1EA1F1, imageName: "Twitter")
