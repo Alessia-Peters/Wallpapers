@@ -51,7 +51,7 @@ class WallpaperViewModel : ObservableObject {
 	}
 	
 	func fetchFromLibrary() async throws {
-		let data = Bundle.main.decode([Wallpaper].self, from: "File.json")
+		let data = Bundle.main.decode([Wallpaper].self, from: "Example.json")
 		
 		let splitResponse = data.splitArray(input: data, heights: height)
 		

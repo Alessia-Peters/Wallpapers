@@ -12,12 +12,12 @@ struct DetailView: View {
 	@ObservedObject var viewModel: DetailViewModel
 	@ObservedObject var wallpaperViewModel: WallpaperViewModel
 	
-	@State var liked = false
-	@State var saving = false
+	@State private var liked = false
+	@State private var saving = false
 	@State private var value = 1.0
 	
-	private let screen = UIScreen.main.bounds
-	
+	@Binding var infoShown: Bool
+	@Binding var detailShown: Bool
 	
 	var body: some View {
 		VStack {
@@ -31,7 +31,10 @@ struct DetailView: View {
 				}
 				Spacer()
 				Button {
-					
+					withAnimation {
+						detailShown = false
+						infoShown = true
+					}
 				} label: {
 					CircleButtonView(symbol: "info")
 				}

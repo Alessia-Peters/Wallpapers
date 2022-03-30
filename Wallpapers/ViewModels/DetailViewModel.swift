@@ -29,4 +29,13 @@ class DetailViewModel : ObservableObject {
 		return selectedImage
 			
 	}
+	
+	func widthRatio() -> Double{
+		let height = (selectedWallpaper?.height)!
+		let width = (selectedWallpaper?.width)!
+		
+		let widthRatio: Double = Double(width) / Double(height)
+		
+		return widthRatio * 200
+	}
 }
