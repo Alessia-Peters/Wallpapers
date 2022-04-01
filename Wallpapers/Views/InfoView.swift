@@ -10,9 +10,6 @@ import SwiftUI
 struct InfoView: View {
 	@ObservedObject var detailViewModel: DetailViewModel
 	
-	@Binding var bioSheet: Bool
-	@Binding var descriptionSheet: Bool
-	
 	var body: some View {
 		VStack {
 			VStack(alignment: .leading) {
@@ -27,7 +24,7 @@ struct InfoView: View {
 							Divider()
 							Button {
 								withAnimation {
-									bioSheet.toggle()
+									detailViewModel.showDetails(type: .bio)
 								}
 							} label: {
 								InfoSegmentBackground(imageName: "info.circle", itemName: "Bio", text: detailViewModel.selectedWallpaper!.user.bio!)
@@ -50,7 +47,7 @@ struct InfoView: View {
 							if detailViewModel.selectedWallpaper!.description != nil || detailViewModel.selectedWallpaper!.altDescription != nil {
 								Button {
 									withAnimation {
-										descriptionSheet.toggle()
+										detailViewModel.showDetails(type: .description)
 									}
 								} label: {
 									InfoSegmentBackground(imageName: "book.closed", itemName: "Description", text: (detailViewModel.selectedWallpaper!.description ?? detailViewModel.selectedWallpaper!.altDescription)!.capitalized)
@@ -70,19 +67,19 @@ struct InfoView: View {
 					)
 					.padding(20)
 					
-					if (detailViewModel.selectedWallpaper!.user.twitter != nil) || (detailViewModel.selectedWallpaper!.user.instagram != nil) {
+					if (detailViewModel.selectedWallpaper!.user.social!.instagram != nil) || (detailViewModel.selectedWallpaper!.user.social!.twitter != nil) {
 						Divider()
 							.padding(.horizontal, 20)
 							.padding(.bottom, 10)
 					}
 					
-					if detailViewModel.selectedWallpaper!.user.twitter != nil {
-						Link(destination: URL(string: "https://twitter.com/\(detailViewModel.selectedWallpaper!.user.twitter!)")!) {
+					if detailViewModel.selectedWallpaper!.user.social!.twitter != nil {
+						Link(destination: URL(string: "https://twitter.com/\(detailViewModel.selectedWallpaper!.user.social!.twitter!)")!) {
 							LinkBackground(text: "Twitter", backgroundColor: 0x1EA1F1, imageName: "Twitter")
 						}
 					}
-					if detailViewModel.selectedWallpaper?.user.instagram != nil {
-						Link(destination: URL(string: "https://instagram.com/\(detailViewModel.selectedWallpaper!.user.instagram!)")!) {
+					if detailViewModel.selectedWallpaper?.user.social!.instagram != nil {
+						Link(destination: URL(string: "https://instagram.com/\(detailViewModel.selectedWallpaper!.user.social!.instagram!)")!) {
 							LinkBackground(text: "Instagram", backgroundColor: 0xF57130, imageName: "Instagram")
 						}
 					}
@@ -95,6 +92,6 @@ struct InfoView: View {
 
 struct InfoView_Previews: PreviewProvider {
 	static var previews: some View {
-		InfoView(detailViewModel: DetailViewModel(), bioSheet: .constant(false), descriptionSheet: .constant(false))
+		InfoView(detailViewModel: DetailViewModel())
 	}
 }

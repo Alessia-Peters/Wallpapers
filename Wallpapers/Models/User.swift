@@ -11,13 +11,10 @@ struct User : Codable {
 	var name: String
 	var profileImage: ProfileImage
 	var bio: String?
-	var instagram: String?
-	var twitter: String?
+	var social: Social?
 	
 	enum CodingKeys: String, CodingKey {
-		case username, name, bio
+		case username, name, bio, social
 		case profileImage = "profile_image"
-		case instagram = "instagram_username"
-		case twitter = "twitter_username"
 	}
 }

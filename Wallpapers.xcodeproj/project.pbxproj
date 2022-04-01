@@ -12,6 +12,7 @@
 		B603E81327F2C9640013A3C1 /* ConnectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B603E81227F2C9640013A3C1 /* ConnectedView.swift */; };
 		B62B5E0627F0720E00570BB0 /* SearchingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B5E0527F0720E00570BB0 /* SearchingViewModel.swift */; };
 		B62B5E0A27F074DC00570BB0 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B5E0927F074DC00570BB0 /* DetailViewModel.swift */; };
+		B654859D27F6A0A3006EFB5D /* Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = B654859C27F6A0A3006EFB5D /* Social.swift */; };
 		B67138E727F3F03700B2BBA3 /* LinkBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67138E627F3F03700B2BBA3 /* LinkBackground.swift */; };
 		B67138E927F400B300B2BBA3 /* InfoSegmentBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67138E827F400B300B2BBA3 /* InfoSegmentBackground.swift */; };
 		B67138EC27F44FB600B2BBA3 /* ExtraInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67138EB27F44FB600B2BBA3 /* ExtraInfoView.swift */; };
@@ -47,6 +48,7 @@
 		B603E81227F2C9640013A3C1 /* ConnectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedView.swift; sourceTree = "<group>"; };
 		B62B5E0527F0720E00570BB0 /* SearchingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingViewModel.swift; sourceTree = "<group>"; };
 		B62B5E0927F074DC00570BB0 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		B654859C27F6A0A3006EFB5D /* Social.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Social.swift; sourceTree = "<group>"; };
 		B67138E527F3E5DA00B2BBA3 /* Wallpapers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallpapers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B67138E627F3F03700B2BBA3 /* LinkBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkBackground.swift; sourceTree = "<group>"; };
 		B67138E827F400B300B2BBA3 /* InfoSegmentBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSegmentBackground.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				B6869D0827EACD0D00E46331 /* Wallpaper.swift */,
 				B6869D1127EAF28F00E46331 /* URLs.swift */,
 				B6869D1327EAF3FB00E46331 /* User.swift */,
+				B654859C27F6A0A3006EFB5D /* Social.swift */,
 				B6869D1527EAFBE000E46331 /* ProfileImage.swift */,
 			);
 			path = Models;
@@ -282,6 +285,7 @@
 				B6869D1927EAFD2900E46331 /* WallpaperViewModel.swift in Sources */,
 				B688933E27F069870064B020 /* SearchResultsView.swift in Sources */,
 				B67138E927F400B300B2BBA3 /* InfoSegmentBackground.swift in Sources */,
+				B654859D27F6A0A3006EFB5D /* Social.swift in Sources */,
 				B6869D1627EAFBE000E46331 /* ProfileImage.swift in Sources */,
 				B6869CEC27EAC6AD00E46331 /* HomeView.swift in Sources */,
 				B6869CEA27EAC6AD00E46331 /* WallpapersApp.swift in Sources */,

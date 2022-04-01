@@ -10,6 +10,7 @@ import SwiftUI
 
 //TODO: Implement a method to find length of text and decide whether or not this view is needed
 struct ExtraInfoView: View {
+	@ObservedObject var viewModel: DetailViewModel
 	var title: String
 	var text: String
     var body: some View {
@@ -30,12 +31,13 @@ struct ExtraInfoView: View {
 			)
 			.padding()
 		}
+		.opacity(viewModel.sheetOpacity)
 		.transition(.move(edge: .bottom))
     }
 }
 
 struct ExtraInfoView_Previews: PreviewProvider {
     static var previews: some View {
-		ExtraInfoView(title: "", text: "")
+		ExtraInfoView(viewModel: DetailViewModel(), title: "", text: "")
     }
 }

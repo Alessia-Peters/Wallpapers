@@ -20,6 +20,7 @@ struct WallpaperListView: View {
 					withAnimation {
 						viewModel.selectedWallpaper = wallpaper
 						viewModel.zoomed = true
+						print("Zooming Image: \(viewModel.selectedWallpaper!.id)")
 					}
 				} label: {
 					CachedAsyncImage(url: URL(string: wallpaper.urls.thumb), urlCache: .imageCache) { image in
