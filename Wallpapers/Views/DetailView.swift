@@ -64,7 +64,6 @@ struct DetailView: View {
 						Text(viewModel.selectedWallpaper!.user.name)
 							.font(.system(size: 25, weight: .semibold))
 						Text(viewModel.selectedWallpaper!.user.username)
-							.fontWeight(.light)
 					}
 					.lineLimit(1)
 					.minimumScaleFactor(0.5)

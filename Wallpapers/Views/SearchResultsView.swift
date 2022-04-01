@@ -40,10 +40,10 @@ struct SearchResultsView: View {
 }
 
 struct SearchResultView_Previews: PreviewProvider {
-    static var previews: some View {
+	static var previews: some View {
 		let viewModel = SearchingViewModel()
 		let detailViewModel = DetailViewModel()
 		
 		SearchResultsView(viewModel: viewModel, detailViewModel: detailViewModel, searchText: .constant(""))
-    }
+	}
 }

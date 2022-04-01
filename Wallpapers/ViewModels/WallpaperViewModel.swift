@@ -79,6 +79,9 @@ class WallpaperViewModel : ObservableObject {
 	}
 	
 	init() {
+		if Bundle.main.object(forInfoDictionaryKey: "API_KEY") as! String == "" {
+			fatalError("No API Key")
+		}
 		allWallpapers = [[Wallpaper](),[Wallpaper](),[Wallpaper]()]
 	}
 }

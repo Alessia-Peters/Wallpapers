@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+
+//TODO: Implement a method to find length of text and decide whether or not this view is needed
 struct ExtraInfoView: View {
 	var title: String
 	var text: String
