@@ -14,24 +14,32 @@ struct HomeView: View {
 	
 	@State var searching = false
 	@State var showingLikes = false
+	@State var background = false
 	
 	var body: some View {
 		ZStack {
-			ScrollView {
-				VStack {
-					Image("Logo")
-						.resizable()
-						.scaledToFit()
-						.frame(height: 30)
-						.padding(.horizontal, 90)
-						.padding(.vertical, 20)
-						.fixedSize()
+			VStack {
+				if wallpapers.connectionState == .connected {
 					
-					if wallpapers.connectionState == .connected {
-						ConnectedView(wallpapers: wallpapers, detailViewModel: detailViewModel)
-					} else if wallpapers.connectionState == .noNetwork {
-						NoConnectionView(wallpapers: wallpapers)
+					ScrollView {
+						ZStack {
+							ConnectedView(wallpapers: wallpapers, detailViewModel: detailViewModel)
+								.padding(.top, 86)
+							GeometryReader { proxy in
+								let offset = proxy.frame(in: .named("scroll")).minY
+								Color.clear.onChange(of: offset) { _ in
+									withAnimation {
+										background = detailViewModel.ifScrolling(offset: offset)
+									}
+								}
+							}
+						}
 					}
+					.coordinateSpace(name: "scroll")
+				} else if wallpapers.connectionState == .noNetwork {
+					Spacer()
+					NoConnectionView(wallpapers: wallpapers)
+					Spacer()
 				}
 			}
 			
@@ -46,7 +54,9 @@ struct HomeView: View {
 					}
 					
 					Spacer()
-					
+					Text("Home")
+						.font(.system(size: 35, weight: .bold))
+					Spacer()
 					Button {
 						withAnimation {
 							showingLikes.toggle()
@@ -58,8 +68,15 @@ struct HomeView: View {
 				.foregroundColor(.primary)
 				.padding()
 				.padding(.horizontal, 3)
+				.if(background) { view in
+					view.background(
+						.bar
+					)
+				}
 				Spacer()
 			}
+			
+			
 			if searching {
 				SearchBarView(detailViewModel: detailViewModel, wallpaperViewModel: wallpapers, persistence: persistence, searching: $searching)
 					.zIndex(5)
@@ -102,7 +119,6 @@ struct HomeView: View {
 				}
 			}
 		}
-		.statusBar(hidden: true)
 	}
 }
 //

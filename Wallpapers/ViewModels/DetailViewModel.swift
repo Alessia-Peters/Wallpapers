@@ -89,6 +89,14 @@ class DetailViewModel : ObservableObject {
 		}
 	}
 	
+	func ifScrolling(offset: CGFloat) -> Bool {
+		if offset > -0.5 {
+			return false
+		} else {
+			return true
+		}
+	}
+	
 	enum SheetTypes {
 		case bio, description
 	}

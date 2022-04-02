@@ -27,19 +27,12 @@ struct LikedView: View {
 						}
 					}
 					.padding()
-					.padding(.horizontal, 3)
-					.padding(.top, 60)
+					.padding(.top, 70)
 					GeometryReader { proxy in
 						let offset = proxy.frame(in: .named("scroll")).minY
 						Color.clear.onChange(of: offset) { newValue in
-							if offset > -0.5 {
-								withAnimation {
-									background = false
-								}
-							} else {
-								withAnimation {
-									background = true
-								}
+							withAnimation {
+								background = detailViewModel.ifScrolling(offset: offset)
 							}
 						}
 					}

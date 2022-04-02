@@ -26,6 +26,10 @@ class WallpaperViewModel : ObservableObject {
 			throw HTTPError.badResponse
 		}
 		
+		DispatchQueue.main.async {
+			self.connectionState = .connecting
+		}
+		
 		let urlString = Constants.baseUrl + Endpoints.random + Parameters.count + "30"
 		
 		guard let url = URL(string: urlString) else {

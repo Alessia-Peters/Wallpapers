@@ -26,6 +26,5 @@ struct NoConnectionView: View {
 					.opacity(0.4)
 					.foregroundColor(.primary)
 			}
-			.padding(.top, screen.height / 3)
 	}
 }
