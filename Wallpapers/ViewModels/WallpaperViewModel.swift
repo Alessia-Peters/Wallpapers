@@ -27,7 +27,9 @@ class WallpaperViewModel : ObservableObject {
 		}
 		
 		DispatchQueue.main.async {
-			self.connectionState = .connecting
+			if self.connectionState == .noNetwork {
+				self.connectionState = .connecting
+			}
 		}
 		
 		let urlString = Constants.baseUrl + Endpoints.random + Parameters.count + "30"

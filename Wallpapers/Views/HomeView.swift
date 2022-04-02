@@ -18,9 +18,7 @@ struct HomeView: View {
 	
 	var body: some View {
 		ZStack {
-			VStack {
-				if wallpapers.connectionState == .connected {
-					
+			if wallpapers.connectionState == .connected {
 					ScrollView {
 						ZStack {
 							ConnectedView(wallpapers: wallpapers, detailViewModel: detailViewModel)
@@ -37,10 +35,7 @@ struct HomeView: View {
 					}
 					.coordinateSpace(name: "scroll")
 				} else if wallpapers.connectionState == .noNetwork {
-					Spacer()
 					NoConnectionView(wallpapers: wallpapers)
-					Spacer()
-				}
 			}
 			
 			VStack {
