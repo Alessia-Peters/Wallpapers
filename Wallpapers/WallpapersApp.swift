@@ -8,9 +8,11 @@ import SwiftUI
 
 @main
 struct WallpapersApp: App {
+	@StateObject private var persistence = Persistence()
 	var body: some Scene {
 		WindowGroup {
-			HomeView()
+			HomeView(persistence: persistence)
+				.environment(\.managedObjectContext, persistence.container.viewContext)
 		}
 	}
 }

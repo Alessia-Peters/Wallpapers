@@ -12,6 +12,7 @@ struct SearchBarView: View {
 	@StateObject var viewModel = SearchingViewModel()
 	@ObservedObject var detailViewModel: DetailViewModel
 	@ObservedObject var wallpaperViewModel: WallpaperViewModel
+	@ObservedObject var persistence: Persistence
 	
 	@State var selectedWallpaper: Wallpaper? = nil
 	@State var zoomed = false
@@ -117,7 +118,7 @@ struct SearchBarView: View {
 				}
 			}
 			if selectedWallpaper != nil {
-				ZoomView(viewModel: detailViewModel, wallpaperViewModel: wallpaperViewModel)
+				ZoomView(viewModel: detailViewModel, wallpaperViewModel: wallpaperViewModel, persistence: persistence)
 					.frame(width: screen.width, height: screen.height)
 					.zIndex(5)
 					.transition(.opacity)
@@ -131,6 +132,6 @@ struct SearchBarView_Previews: PreviewProvider {
 		let wallpaperViewModel = WallpaperViewModel()
 		let detailViewModel = DetailViewModel()
 		
-		SearchBarView(detailViewModel: detailViewModel, wallpaperViewModel: wallpaperViewModel, searching: .constant(true))
+		SearchBarView(detailViewModel: detailViewModel, wallpaperViewModel: wallpaperViewModel, persistence: Persistence(), searching: .constant(true))
 	}
 }

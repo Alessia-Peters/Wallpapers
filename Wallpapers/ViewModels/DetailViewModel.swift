@@ -16,6 +16,27 @@ class DetailViewModel : ObservableObject {
 	@Published var bioSheet = false
 	@Published var descriptionSheet = false
 	
+	func fetchLikedWallpaper(id: String) async throws {
+		let urlString = Constants.baseUrl + Endpoints.id + id
+		
+		guard let url = URL(string: urlString) else {
+			throw HTTPError.badUrl
+		}
+		
+		guard let response: Wallpaper = try await HTTPClient.shared.fetch(url: url) else {
+			throw HTTPError.badResponse
+		}
+		
+		selectedWallpaper = response
+		
+		DispatchQueue.main.async {
+			withAnimation {
+				self.zoomed = true
+			}
+			print("Zooming Image: \(id)")
+		}
+	}
+	
 	func imageSize() -> String{
 		var selectedImage: String
 		

@@ -10,8 +10,10 @@ struct HomeView: View {
 	
 	@StateObject var wallpapers = WallpaperViewModel()
 	@StateObject var detailViewModel = DetailViewModel()
+	@ObservedObject var persistence: Persistence
 	
 	@State var searching = false
+	@State var showingLikes = false
 	
 	var body: some View {
 		ZStack {
@@ -46,7 +48,9 @@ struct HomeView: View {
 					Spacer()
 					
 					Button {
-						
+						withAnimation {
+							showingLikes.toggle()
+						}
 					} label: {
 						CircleButtonView(symbol: "heart")
 					}
@@ -57,16 +61,21 @@ struct HomeView: View {
 				Spacer()
 			}
 			if searching {
-				SearchBarView(detailViewModel: detailViewModel, wallpaperViewModel: wallpapers, searching: $searching)
+				SearchBarView(detailViewModel: detailViewModel, wallpaperViewModel: wallpapers, persistence: persistence, searching: $searching)
 					.zIndex(5)
 			}
+			
 			if detailViewModel.zoomed {
-				ZoomView(viewModel: detailViewModel, wallpaperViewModel: wallpapers)
-
+				ZoomView(viewModel: detailViewModel, wallpaperViewModel: wallpapers, persistence: persistence)
 					.transition(.opacity)
 					.zIndex(5)
-				
 			}
+			
+			if showingLikes {
+				LikedView(persistence: persistence, detailViewModel: detailViewModel, showingLikes: $showingLikes)
+					.zIndex(4)
+			}
+			
 			if wallpapers.popUpActive {
 				PopUpView(text: "Image Saved!")
 					.onAppear {

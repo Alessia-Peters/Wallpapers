@@ -40,6 +40,28 @@ extension Array {
 		
 		return (splitArray, itemHeights)
 	}
+	
+	//TODO: figure out a way to combine these and remove boilerplate
+	
+	func splitLikedArray(input: [LikedImage]) -> [[LikedImage]] {
+		var splitArray = [[LikedImage](),[LikedImage](),[LikedImage]()]
+		
+		var itemHeights = [Double(),Double(),Double()]
+		
+		input.forEach { item in
+			
+			let itemHeight = item.sizeRatio
+			
+			let randomPosition = (0...2).randomElement() /// Creates random position of nil is thrown
+			
+			let smallestHeight = minIndex(someArray: itemHeights) /// Calculates smalled position in itemheights
+			
+			splitArray[(smallestHeight ?? randomPosition)!].append(item) /// Adds wallpaper to smallest array or random array
+			itemHeights[(smallestHeight ?? randomPosition)!] += itemHeight /// Adds height to corresponding height
+		}
+		
+		return splitArray
+	}
 }
 
 extension URLCache {

@@ -23,18 +23,7 @@ struct WallpaperListView: View {
 						print("Zooming Image: \(viewModel.selectedWallpaper!.id)")
 					}
 				} label: {
-					CachedAsyncImage(url: URL(string: wallpaper.urls.thumb), urlCache: .imageCache) { image in
-						image
-							.resizable()
-							.scaledToFit()
-					} placeholder: {
-						Color
-							.accentColor
-							.opacity(0.1)
-							.frame(height: 150)
-					}
-					.cornerRadius(15)
-					.padding(3)
+					ListViewImage(url: URL(string: wallpaper.urls.thumb)!)
 				}
 			}
 			Spacer()

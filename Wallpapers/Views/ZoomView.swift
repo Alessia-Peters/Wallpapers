@@ -11,6 +11,7 @@ struct ZoomView: View {
 	
 	@ObservedObject var viewModel: DetailViewModel
 	@ObservedObject var wallpaperViewModel: WallpaperViewModel
+	@ObservedObject var persistence: Persistence
 	
 	@State var detailShown = true
 	@State var infoShown = false
@@ -86,7 +87,7 @@ struct ZoomView: View {
 			}
 			.blur(radius: viewModel.sheetOpacity == 1 ? 4 : 0)
 			
-			DetailView(viewModel: viewModel, wallpaperViewModel: wallpaperViewModel, infoShown: $infoShown, detailShown: $detailShown)
+			DetailView(viewModel: viewModel, wallpaperViewModel: wallpaperViewModel, persistence: persistence, infoShown: $infoShown, detailShown: $detailShown)
 				.opacity(detailShown ? 1 : 0)
 			
 			Group {

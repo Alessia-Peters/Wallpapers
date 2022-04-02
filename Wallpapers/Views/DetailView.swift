@@ -11,6 +11,7 @@ struct DetailView: View {
 	
 	@ObservedObject var viewModel: DetailViewModel
 	@ObservedObject var wallpaperViewModel: WallpaperViewModel
+	@ObservedObject var persistence: Persistence
 	
 	@State private var liked = false
 	@State private var saving = false
@@ -74,6 +75,11 @@ struct DetailView: View {
 					Group {
 						Button {
 							withAnimation {
+								if liked == false {
+									persistence.likeImage(image: viewModel.selectedWallpaper!)
+								} else {
+									persistence.delete(imageID: viewModel.selectedWallpaper!.id)
+								}
 								liked.toggle()
 							}
 						} label: {
@@ -118,5 +124,10 @@ struct DetailView: View {
 			}
 		}
 		.foregroundColor(.primary)
+		.onAppear {
+			if persistence.checkIfLiked(id: viewModel.selectedWallpaper!.id) {
+				liked = true
+			}
+		}
 	}
 }

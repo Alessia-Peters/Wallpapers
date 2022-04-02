@@ -10,6 +10,7 @@ import SwiftUI
 struct SaveButtonOptions: View {
 	@ObservedObject var viewModel: DetailViewModel
 	var body: some View {
+		Text("Resolution")
 		Group {
 			Button {
 				viewModel.selectedSize = .raw
@@ -18,7 +19,7 @@ struct SaveButtonOptions: View {
 					if viewModel.selectedSize == .raw {
 						Image(systemName: "checkmark")
 					}
-					Text("Raw")
+					Text("Max")
 				}
 			}
 			Button {
@@ -28,7 +29,7 @@ struct SaveButtonOptions: View {
 					if viewModel.selectedSize == .full {
 						Image(systemName: "checkmark")
 					}
-					Text("Full")
+					Text("High")
 				}
 			}
 			Button {
@@ -38,7 +39,7 @@ struct SaveButtonOptions: View {
 					if viewModel.selectedSize == .regular {
 						Image(systemName: "checkmark")
 					}
-					Text("Regular")
+					Text("Medium")
 				}
 			}
 			Button {
@@ -48,7 +49,7 @@ struct SaveButtonOptions: View {
 					if viewModel.selectedSize == .small {
 						Image(systemName: "checkmark")
 					}
-					Text("Small")
+					Text("Low")
 				}
 			}
 		}
