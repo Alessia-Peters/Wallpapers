@@ -13,7 +13,7 @@ struct LikedView: View {
 	@Binding var showingLikes: Bool
 	var body: some View {
 		ZStack {
-			Color.white.ignoresSafeArea()
+			Color.primary.ignoresSafeArea().colorInvert()
 			ScrollView {
 				VStack {
 					HStack {
@@ -26,6 +26,7 @@ struct LikedView: View {
 				.padding()
 				.padding(.horizontal, 3)
 			}
+			.padding(.top, 50)
 			VStack {
 				HStack {
 					Button {
