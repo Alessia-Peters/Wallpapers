@@ -41,8 +41,8 @@ struct DetailView: View {
 				}
 				
 			}
-			.padding(.top, 15)
-			.padding(.horizontal, 18)
+			.padding(.top, 16)
+			.padding(.horizontal, 19)
 			
 			Spacer()
 			
