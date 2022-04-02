@@ -49,10 +49,12 @@ class WallpaperViewModel : ObservableObject {
 		height = splitResponse.1
 		
 		DispatchQueue.main.async {
-			self.allWallpapers[0].append(contentsOf: splitItems[0])
-			self.allWallpapers[1].append(contentsOf: splitItems[1])
-			self.allWallpapers[2].append(contentsOf: splitItems[2])
-			self.connectionState = .connected
+			withAnimation {
+				self.allWallpapers[0].append(contentsOf: splitItems[0])
+				self.allWallpapers[1].append(contentsOf: splitItems[1])
+				self.allWallpapers[2].append(contentsOf: splitItems[2])
+				self.connectionState = .connected
+			}
 		}
 	}
 	

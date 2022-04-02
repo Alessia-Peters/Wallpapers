@@ -14,11 +14,11 @@ struct SearchBarView: View {
 	@ObservedObject var wallpaperViewModel: WallpaperViewModel
 	@ObservedObject var persistence: Persistence
 	
-	@State var selectedWallpaper: Wallpaper? = nil
 	@State var zoomed = false
 	
 	@State var searchText = String()
 	@Binding var searching: Bool
+	@State var background = false
 	
 	private let screen = UIScreen.main.bounds
 	
@@ -30,71 +30,11 @@ struct SearchBarView: View {
 				Color.black.ignoresSafeArea()
 			}
 			VStack {
-				ZStack {
-					HStack {
-						HStack {
-							TextField("Search", text: $searchText)
-								.padding()
-								.frame(height: 40)
-								.textFieldStyle(.plain)
-								.submitLabel(.search)
-								.onSubmit {
-									viewModel.resetSearchResults()
-									viewModel.noResults = false
-									Task {
-										do {
-											try await viewModel.search(searchText: searchText)
-										} catch {
-											print("Error: \(error)")
-										}
-									}
-								}
-							
-							Button {
-								viewModel.resetSearchResults()
-								viewModel.noResults = false
-								Task {
-									do {
-										try await viewModel.search(searchText: searchText)
-									} catch {
-										print("Error: \(error)")
-									}
-								}
-							} label: {
-								Image(systemName: "magnifyingglass")
-							}
-							.padding(.trailing)
-							.disabled(searchText == "")
-							
-						}
-						.background(
-							.regularMaterial,
-							in: RoundedRectangle(cornerRadius: 20, style: .continuous)
-						)
-						.frame(height: 25)
-						Button {
-							withAnimation {
-								searching = false
-							}
-							viewModel.resetSearchResults()
-						} label: {
-							Text("Cancel")
-						}
-						.padding(.leading, 5)
-					}
-					.padding(.horizontal, 20)
-					.padding(.top, 23)
-					.background(
-						Color.primary.colorInvert()
-							.blur(radius: 1)
-							.frame(height: 70)
-							.offset(y: 5)
-					)
-				}
 				
-				Spacer()
+				
+//				Spacer()
 				if viewModel.showingResults && viewModel.searchedWallpapers != nil {
-					SearchResultsView(viewModel: viewModel, detailViewModel: detailViewModel, searchText: $searchText)
+						SearchResultsView(viewModel: viewModel, detailViewModel: detailViewModel, searchText: $searchText, background: $background)
 						.zIndex(-1)
 				} else if viewModel.noResults {
 					Text("No Results")
@@ -117,11 +57,66 @@ struct SearchBarView: View {
 					Spacer()
 				}
 			}
-			if selectedWallpaper != nil {
-				ZoomView(viewModel: detailViewModel, wallpaperViewModel: wallpaperViewModel, persistence: persistence)
-					.frame(width: screen.width, height: screen.height)
-					.zIndex(5)
-					.transition(.opacity)
+			VStack {
+				HStack {
+					HStack {
+						TextField("Search", text: $searchText)
+							.padding()
+							.frame(height: 40)
+							.textFieldStyle(.plain)
+							.submitLabel(.search)
+							.onSubmit {
+								viewModel.resetSearchResults()
+								viewModel.noResults = false
+								Task {
+									do {
+										try await viewModel.search(searchText: searchText)
+									} catch {
+										print("Error: \(error)")
+									}
+								}
+							}
+						
+						Button {
+							viewModel.resetSearchResults()
+							viewModel.noResults = false
+							Task {
+								do {
+									try await viewModel.search(searchText: searchText)
+								} catch {
+									print("Error: \(error)")
+								}
+							}
+						} label: {
+							Image(systemName: "magnifyingglass")
+						}
+						.padding(.trailing)
+						.disabled(searchText == "")
+						
+					}
+					.background(
+						.regularMaterial,
+						in: RoundedRectangle(cornerRadius: 20, style: .continuous)
+					)
+					.frame(height: 25)
+					Button {
+						withAnimation {
+							searching = false
+						}
+						viewModel.resetSearchResults()
+					} label: {
+						Text("Cancel")
+					}
+					.padding(.leading, 5)
+				}
+				.padding(.horizontal, 19)
+				.padding(.vertical, 25)
+				.if(background) { view in
+					view.background(
+						.bar
+					)
+				}
+				Spacer()
 			}
 		}
 	}

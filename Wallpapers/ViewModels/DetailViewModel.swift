@@ -89,8 +89,8 @@ class DetailViewModel : ObservableObject {
 		}
 	}
 	
-	func ifScrolling(offset: CGFloat) -> Bool {
-		if offset > -0.5 {
+	func ifScrolling(offset: CGFloat, offsetMax: CGFloat = -0.5) -> Bool {
+		if offset > offsetMax {
 			return false
 		} else {
 			return true

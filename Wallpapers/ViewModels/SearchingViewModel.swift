@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class SearchingViewModel : ObservableObject {
 	
@@ -52,11 +53,13 @@ class SearchingViewModel : ObservableObject {
 		let splitItems = splitResponse.0
 		
 		DispatchQueue.main.async {
+			withAnimation {
+				self.searchedWallpapers![0].append(contentsOf: splitItems[0])
+				self.searchedWallpapers![1].append(contentsOf: splitItems[1])
+				self.searchedWallpapers![2].append(contentsOf: splitItems[2])
+				self.showingResults = true
+			}
 			self.height = splitResponse.1
-			self.searchedWallpapers![0].append(contentsOf: splitItems[0])
-			self.searchedWallpapers![1].append(contentsOf: splitItems[1])
-			self.searchedWallpapers![2].append(contentsOf: splitItems[2])
-			self.showingResults = true
 		}
 	}
 	

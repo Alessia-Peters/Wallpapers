@@ -11,14 +11,25 @@ struct SearchResultsView: View {
 	@ObservedObject var detailViewModel: DetailViewModel
 	
 	@Binding var searchText: String
+	@Binding var background: Bool
 	
 	var body: some View {
 		ScrollView {
 			VStack {
-				HStack{
-					WallpaperListView(index: 0, items: viewModel.searchedWallpapers!, viewModel: detailViewModel)
-					WallpaperListView(index: 1, items: viewModel.searchedWallpapers!, viewModel: detailViewModel)
-					WallpaperListView(index: 2, items: viewModel.searchedWallpapers!, viewModel: detailViewModel)
+				ZStack {
+					HStack{
+						WallpaperListView(index: 0, items: viewModel.searchedWallpapers!, viewModel: detailViewModel)
+						WallpaperListView(index: 1, items: viewModel.searchedWallpapers!, viewModel: detailViewModel)
+						WallpaperListView(index: 2, items: viewModel.searchedWallpapers!, viewModel: detailViewModel)
+					}
+					GeometryReader { proxy in
+						let offset = proxy.frame(in: .named("scroll")).minY
+						Color.clear.onChange(of: offset) { _ in
+							withAnimation {
+								background = detailViewModel.ifScrolling(offset: offset, offsetMax: 75)
+							}
+						}
+					}
 				}
 				Button {
 					Task {
@@ -33,9 +44,11 @@ struct SearchResultsView: View {
 					SearchMoreView()
 				}
 			}
+			.padding(.top, 62)
 			.padding(.horizontal)
 			.padding(.top)
 		}
+		.coordinateSpace(name: "scroll")
 	}
 }
 
@@ -44,6 +57,6 @@ struct SearchResultView_Previews: PreviewProvider {
 		let viewModel = SearchingViewModel()
 		let detailViewModel = DetailViewModel()
 		
-		SearchResultsView(viewModel: viewModel, detailViewModel: detailViewModel, searchText: .constant(""))
+		SearchResultsView(viewModel: viewModel, detailViewModel: detailViewModel, searchText: .constant(""), background: .constant(true))
 	}
 }

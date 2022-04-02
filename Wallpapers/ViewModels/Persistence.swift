@@ -54,11 +54,15 @@ class Persistence: ObservableObject {
 	
 	func fetch() {
 		let fetchRequest = NSFetchRequest<LikedImage>(entityName: "LikedImage")
+		let sort = NSSortDescriptor(key: #keyPath(LikedImage.date), ascending: false)
+		
+		fetchRequest.sortDescriptors = [sort]
 		
 		do {
 			let imageArray = try container.viewContext.fetch(fetchRequest)
 			likedImages = imageArray.splitLikedArray(input: imageArray)
 			unsortedLikedImages = imageArray
+			
 		} catch {
 			print("Error Fetching: \(error)")
 		}
