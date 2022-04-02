@@ -27,9 +27,8 @@ class DetailViewModel : ObservableObject {
 			throw HTTPError.badResponse
 		}
 		
-		selectedWallpaper = response
-		
 		DispatchQueue.main.async {
+			self.selectedWallpaper = response
 			withAnimation {
 				self.zoomed = true
 			}
