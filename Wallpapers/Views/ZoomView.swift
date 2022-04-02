@@ -18,7 +18,7 @@ struct ZoomView: View {
 	
 	var body: some View {
 		ZStack{
-			Color.white.ignoresSafeArea().frame(minWidth: 0, maxWidth: .infinity)
+			Color.primary.ignoresSafeArea().frame(minWidth: 0, maxWidth: .infinity).colorInvert()
 			
 			ZStack {
 				VStack {
