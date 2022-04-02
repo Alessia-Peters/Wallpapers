@@ -120,7 +120,7 @@ struct DetailView: View {
 					in: RoundedRectangle(cornerRadius: 25, style: .continuous)
 				)
 				.padding(.horizontal, 18)
-				.padding(.bottom)
+
 			}
 		}
 		.foregroundColor(.primary)

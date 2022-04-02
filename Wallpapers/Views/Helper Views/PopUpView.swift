@@ -13,11 +13,13 @@ struct PopUpView: View {
 		VStack {
         Text(text)
 			.font(.system(size: 20, weight: .medium))
-			.frame(width: screen.width - 70, height: 60)
+			.frame(minWidth: 100, maxWidth: 300)
+			.frame(height: 60)
 			.background(
 				.ultraThinMaterial,
 				in: RoundedRectangle(cornerRadius: 15)
 			)
+			.padding(.top)
 			Spacer()
 		}
     }

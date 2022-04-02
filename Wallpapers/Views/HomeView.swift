@@ -114,6 +114,7 @@ struct HomeView: View {
 				}
 			}
 		}
+		.statusBar(hidden: true)
 	}
 }
 //

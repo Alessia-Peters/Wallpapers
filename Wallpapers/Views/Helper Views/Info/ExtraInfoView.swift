@@ -32,7 +32,7 @@ struct ExtraInfoView: View {
 			.padding()
 		}
 		.opacity(viewModel.sheetOpacity)
-		.transition(.move(edge: .bottom))
+		.transition(.opacity)
     }
 }
 
