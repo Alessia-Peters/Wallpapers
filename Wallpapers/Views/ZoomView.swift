@@ -56,7 +56,7 @@ struct ZoomView: View {
 									.resizable()
 									.aspectRatio(contentMode: .fill)
 									.frame(minWidth: 0, maxWidth: .infinity)
-								
+								ProgressView()
 							} placeholder: {
 								ProgressView()
 							}
