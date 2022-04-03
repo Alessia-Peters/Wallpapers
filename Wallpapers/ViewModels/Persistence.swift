@@ -92,7 +92,3 @@ class Persistence: ObservableObject {
 	}
 	
 }
-
-enum CoreDataError: Error {
-	case fetchError
-}

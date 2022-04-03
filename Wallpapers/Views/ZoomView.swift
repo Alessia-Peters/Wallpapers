@@ -18,7 +18,7 @@ struct ZoomView: View {
 	
 	var body: some View {
 		ZStack{
-			Color.primary.ignoresSafeArea().frame(minWidth: 0, maxWidth: .infinity).colorInvert()
+			Color.primary.ignoresSafeArea().frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity).colorInvert()
 			
 			ZStack {
 				VStack {
@@ -48,14 +48,14 @@ struct ZoomView: View {
 							image
 								.resizable()
 								.aspectRatio(contentMode: .fill)
-								.frame(minWidth: 0, maxWidth: .infinity)
+								.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
 							
 						} placeholder: {
 							CachedAsyncImage(url: URL(string: viewModel.selectedWallpaper!.urls.thumb), urlCache: .imageCache) { image in
 								image
 									.resizable()
 									.aspectRatio(contentMode: .fill)
-									.frame(minWidth: 0, maxWidth: .infinity)
+									.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
 								ProgressView()
 							} placeholder: {
 								ProgressView()
@@ -90,13 +90,11 @@ struct ZoomView: View {
 			DetailView(viewModel: viewModel, wallpaperViewModel: wallpaperViewModel, persistence: persistence, infoShown: $infoShown, detailShown: $detailShown)
 				.opacity(detailShown ? 1 : 0)
 			
-			Group {
 				if viewModel.bioSheet {
 					ExtraInfoView(viewModel: viewModel, title: "Bio", text: viewModel.selectedWallpaper!.user.bio!)
 				}
 				if viewModel.descriptionSheet {
 					ExtraInfoView(viewModel: viewModel, title: "Description", text: viewModel.selectedWallpaper!.description ?? viewModel.selectedWallpaper!.altDescription!)
-				}
 			}
 		}
 		.onTapGesture {
