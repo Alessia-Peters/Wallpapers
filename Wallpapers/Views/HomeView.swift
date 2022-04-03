@@ -47,6 +47,7 @@ struct HomeView: View {
 					} label: {
 						CircleButtonView(symbol: "magnifyingglass")
 					}
+					.accessibilityIdentifier("Search Button")
 					
 					Spacer()
 					Text("Home")
@@ -59,6 +60,7 @@ struct HomeView: View {
 					} label: {
 						CircleButtonView(symbol: "heart")
 					}
+					.accessibilityIdentifier("Likes Button")
 				}
 				.foregroundColor(.primary)
 				.padding()

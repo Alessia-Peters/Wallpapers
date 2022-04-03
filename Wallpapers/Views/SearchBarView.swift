@@ -76,6 +76,7 @@ struct SearchBarView: View {
 									}
 								}
 							}
+							.accessibilityIdentifier("Search Field")
 						
 						Button {
 							viewModel.resetSearchResults()
@@ -90,6 +91,7 @@ struct SearchBarView: View {
 						} label: {
 							Image(systemName: "magnifyingglass")
 						}
+						.accessibilityIdentifier("Search For Results")
 						.padding(.trailing)
 						.disabled(searchText == "")
 						
@@ -107,6 +109,7 @@ struct SearchBarView: View {
 					} label: {
 						Text("Cancel")
 					}
+					.accessibilityIdentifier("Cancel")
 					.padding(.leading, 5)
 				}
 				.padding(.horizontal, 19)
