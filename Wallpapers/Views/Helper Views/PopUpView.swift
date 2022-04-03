@@ -7,7 +7,6 @@
 import SwiftUI
 
 struct PopUpView: View {
-	let screen = UIScreen.main.bounds
 	var text: String
     var body: some View {
 		VStack {

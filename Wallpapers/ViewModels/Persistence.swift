@@ -8,7 +8,6 @@
 import CoreData
 
 class Persistence: ObservableObject {
-	static let shared = Persistence()
 	
 	let container: NSPersistentContainer
 	

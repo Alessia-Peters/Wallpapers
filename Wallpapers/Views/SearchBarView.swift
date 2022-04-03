@@ -7,32 +7,23 @@
 import SwiftUI
 
 struct SearchBarView: View {
-	@Environment(\.colorScheme) var colorScheme
 	
 	@StateObject var viewModel = SearchingViewModel()
 	@ObservedObject var detailViewModel: DetailViewModel
 	@ObservedObject var wallpaperViewModel: WallpaperViewModel
 	@ObservedObject var persistence: Persistence
 	
-	@State var zoomed = false
-	
-	@State var searchText = String()
-	@Binding var searching: Bool
 	@State var background = false
+	@State var zoomed = false
+	@State var searchText = String()
 	
-	private let screen = UIScreen.main.bounds
+	@Binding var searching: Bool
 	
 	var body: some View {
 		ZStack {
-			if colorScheme == .light {
-				Color.white.ignoresSafeArea()
-			} else {
-				Color.black.ignoresSafeArea()
-			}
+			Color.primary.colorInvert()
 			VStack {
-				
-				
-//				Spacer()
+
 				if viewModel.showingResults && viewModel.searchedWallpapers != nil {
 						SearchResultsView(viewModel: viewModel, detailViewModel: detailViewModel, searchText: $searchText, background: $background)
 						.zIndex(-1)

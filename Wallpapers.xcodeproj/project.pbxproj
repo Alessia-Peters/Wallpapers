@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -42,6 +42,7 @@
 		B6C8863227F056E900875C01 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C8863127F056E900875C01 /* SearchBarView.swift */; };
 		B6C8863427F0648200875C01 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C8863327F0648200875C01 /* Bundle+Extension.swift */; };
 		B6C8863827F064AE00875C01 /* Example.json in Resources */ = {isa = PBXBuildFile; fileRef = B6C8863727F064AE00875C01 /* Example.json */; };
+		B6D1D53D27F9509F0060F17C /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B6D1D53C27F9509F0060F17C /* Secrets.xcconfig */; };
 		B6E504A427F7A93800002118 /* LikedImagesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E504A327F7A93800002118 /* LikedImagesListView.swift */; };
 		B6EA20D027EBEBF60052C263 /* ZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EA20CF27EBEBF60052C263 /* ZoomView.swift */; };
 /* End PBXBuildFile section */
@@ -66,7 +67,6 @@
 		B6869D0127EAC96200E46331 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		B6869D0327EAC96800E46331 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B6869D0827EACD0D00E46331 /* Wallpaper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallpaper.swift; sourceTree = "<group>"; };
-		B6869D0D27EAEDC600E46331 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		B6869D0E27EAEE1C00E46331 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B6869D1127EAF28F00E46331 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 		B6869D1327EAF3FB00E46331 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -84,6 +84,7 @@
 		B6C8863127F056E900875C01 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		B6C8863327F0648200875C01 /* Bundle+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		B6C8863727F064AE00875C01 /* Example.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Example.json; sourceTree = "<group>"; };
+		B6D1D53C27F9509F0060F17C /* Secrets.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		B6E504A327F7A93800002118 /* LikedImagesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedImagesListView.swift; sourceTree = "<group>"; };
 		B6EA20CF27EBEBF60052C263 /* ZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -165,7 +166,7 @@
 				B60292CE27EFE83400C9ABB6 /* Extensions.swift */,
 				B6C8863327F0648200875C01 /* Bundle+Extension.swift */,
 				B6C8863727F064AE00875C01 /* Example.json */,
-				B6869D0D27EAEDC600E46331 /* Secrets.xcconfig */,
+				B6D1D53C27F9509F0060F17C /* Secrets.xcconfig */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -248,7 +249,7 @@
 				};
 			};
 			buildConfigurationList = B6869CE127EAC6AD00E46331 /* Build configuration list for PBXProject "Wallpapers" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -275,6 +276,7 @@
 			files = (
 				B6869CEE27EAC6AE00E46331 /* Assets.xcassets in Resources */,
 				B6C8863827F064AE00875C01 /* Example.json in Resources */,
+				B6D1D53D27F9509F0060F17C /* Secrets.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,7 +329,7 @@
 /* Begin XCBuildConfiguration section */
 		B6869CF227EAC6AE00E46331 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B6869D0D27EAEDC600E46331 /* Secrets.xcconfig */;
+			baseConfigurationReference = B6D1D53C27F9509F0060F17C /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -388,7 +390,7 @@
 		};
 		B6869CF327EAC6AE00E46331 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B6869D0D27EAEDC600E46331 /* Secrets.xcconfig */;
+			baseConfigurationReference = B6D1D53C27F9509F0060F17C /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -443,7 +445,7 @@
 		};
 		B6869CF527EAC6AE00E46331 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B6869D0D27EAEDC600E46331 /* Secrets.xcconfig */;
+			baseConfigurationReference = B6D1D53C27F9509F0060F17C /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -477,7 +479,7 @@
 		};
 		B6869CF627EAC6AE00E46331 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B6869D0D27EAEDC600E46331 /* Secrets.xcconfig */;
+			baseConfigurationReference = B6D1D53C27F9509F0060F17C /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

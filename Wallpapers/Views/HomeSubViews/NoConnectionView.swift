@@ -10,8 +10,6 @@ import SwiftUI
 struct NoConnectionView: View {
 	@ObservedObject var wallpapers: WallpaperViewModel
 	
-	let screen = UIScreen.main.bounds
-	
 	var body: some View {
 			Button {
 				Task {

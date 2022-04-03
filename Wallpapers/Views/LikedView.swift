@@ -10,9 +10,9 @@ import SwiftUI
 struct LikedView: View {
 	@ObservedObject var persistence: Persistence
 	@ObservedObject var detailViewModel: DetailViewModel
+	
 	@Binding var showingLikes: Bool
 	@State var background = false
-	
 	
 	var body: some View {
 		ZStack {
