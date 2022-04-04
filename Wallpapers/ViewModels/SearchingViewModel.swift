@@ -89,6 +89,7 @@ class SearchingViewModel : ObservableObject {
 	func resetSearchResults() {
 		self.searchedWallpapers = [[Wallpaper](),[Wallpaper](),[Wallpaper]()]
 		self.page = 1
+		self.height = [0,0,0]
 	}
 	
 	init() {
