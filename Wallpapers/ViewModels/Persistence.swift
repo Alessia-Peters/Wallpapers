@@ -9,6 +9,7 @@ import CoreData
 
 class Persistence: ObservableObject {
 	
+	/// Container that CoreData stores data in
 	let container: NSPersistentContainer
 	
 	/// All images the user has liked
