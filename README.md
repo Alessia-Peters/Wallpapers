@@ -8,4 +8,4 @@
   <img height="500" src="https://i.imgur.com/6YHmNQN.png">
 </div>
   
-  > Yes I know it's againts the TOS to create a wallpaper client, but this is simply a demo app for [DevProjects Challenge](https://www.codementor.io/projects/mobile/wallpaper-mobile-app-atx32pz772), and will only be used as such.
+  > Yes I know it's againts the TOS to create a wallpaper client, this is simply a demo app for [DevProjects Challenge](https://www.codementor.io/projects/mobile/wallpaper-mobile-app-atx32pz772), and will only be used as such.
