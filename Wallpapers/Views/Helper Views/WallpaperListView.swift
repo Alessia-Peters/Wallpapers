@@ -10,6 +10,7 @@ import CachedAsyncImage
 struct WallpaperListView: View {
 	var index: Int
 	var items: [[Wallpaper]]
+	var imageCache: URLCache
 	
 	@ObservedObject var viewModel: DetailViewModel
 	
@@ -23,7 +24,7 @@ struct WallpaperListView: View {
 						print("Zooming Image: \(viewModel.selectedWallpaper!.id)")
 					}
 				} label: {
-					ListViewImage(url: URL(string: wallpaper.urls.thumb)!)
+					ListViewImage(url: URL(string: wallpaper.urls.thumb)!, imageCache: imageCache)
 				}
 			}
 			Spacer()

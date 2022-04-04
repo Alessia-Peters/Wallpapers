@@ -16,6 +16,8 @@ struct LikedImagesListView: View {
 	@ObservedObject var viewModel: DetailViewModel
 	@ObservedObject var persistence: Persistence
 	
+	var imageCache: URLCache
+	
 	var body: some View {
 		VStack {
 			ForEach(items[index]) { wallpaper in
@@ -28,7 +30,7 @@ struct LikedImagesListView: View {
 						}
 					}
 				} label: {
-					ListViewImage(url: wallpaper.thumbnail!)
+					ListViewImage(url: wallpaper.thumbnail!, imageCache: imageCache)
 				}
 			}
 			Spacer()
@@ -38,8 +40,10 @@ struct LikedImagesListView: View {
 
 struct ListViewImage: View {
 	var url: URL
+	var imageCache: URLCache
+	
 	var body: some View {
-		CachedAsyncImage(url: url, urlCache: .imageCache) { image in
+		CachedAsyncImage(url: url, urlCache: .mainImageCache) { image in
 			image
 				.resizable()
 				.scaledToFit()

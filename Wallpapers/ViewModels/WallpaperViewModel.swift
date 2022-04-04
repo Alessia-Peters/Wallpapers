@@ -13,10 +13,13 @@ class WallpaperViewModel : ObservableObject {
 	@Published var connectionState: ConnectionState = .disconnected
 	@Published var popUpActive = false
 	
+	/// The height of the columns of images
 	private var height: [Double] = [0,0,0]
 	
+	/// Fetches a set of 30 random wallpapers
 	func fetch() async throws {
 		
+		/// Throws if a connection cant be made
 		do {
 			try await HTTPClient.shared.checkConnection()
 		} catch {
@@ -26,6 +29,7 @@ class WallpaperViewModel : ObservableObject {
 			throw HTTPError.badResponse
 		}
 		
+		/// If connection was previously offline and and method before didnt throw, sets connection to connecting
 		DispatchQueue.main.async {
 			if self.connectionState == .noNetwork {
 				self.connectionState = .connecting
@@ -42,10 +46,12 @@ class WallpaperViewModel : ObservableObject {
 			throw HTTPError.badResponse
 		}
 		
-		let splitResponse = response.splitArray(input: response, heights: height)
+		/// Splits the returned array into a nested array to be used in columns in the view
+		let splitResponse = response.splitArray(inputArray: response, heights: height)
 		
 		let splitItems = splitResponse.0
 		
+		/// Saves the height to be used again if "Load More" is pressed
 		height = splitResponse.1
 		
 		DispatchQueue.main.async {
@@ -58,10 +64,12 @@ class WallpaperViewModel : ObservableObject {
 		}
 	}
 	
+	#if DEBUG
+	/// Fetches saved json file from project directory. Used only for debugging
 	func fetchFromLibrary() async throws {
 		let data = Bundle.main.decode([Wallpaper].self, from: "Example.json")
 		
-		let splitResponse = data.splitArray(input: data, heights: height)
+		let splitResponse = data.splitArray(inputArray: data, heights: height)
 		
 		let splitItems = splitResponse.0
 		
@@ -72,15 +80,22 @@ class WallpaperViewModel : ObservableObject {
 			self.connectionState = .connected
 		}
 	}
+	#endif
 	
+	/// Saves an image to photo library
+	/// - Parameter imageString: String of the image address
 	func saveToLibrary(imageString: String) async throws {
 		
+		/// Fetches and decodes photo
 		let image = try await HTTPClient.shared.fetchImage(imageString: imageString)
 		
+		/// Writes photos to library
 		UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
 		
 		DispatchQueue.main.async {
 			withAnimation {
+				/// Shows the popup to say the image is saved
+				// TODO: Make the popup show if a photo failed to save
 				self.popUpActive = true
 			}
 		}

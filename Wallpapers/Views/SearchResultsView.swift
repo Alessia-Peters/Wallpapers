@@ -13,14 +13,16 @@ struct SearchResultsView: View {
 	@Binding var searchText: String
 	@Binding var background: Bool
 	
+	private let searchImageCache = URLCache(memoryCapacity: 512*1000*1000, diskCapacity: 0)
+	
 	var body: some View {
 		ScrollView {
 			VStack {
 				ZStack {
 					HStack{
-						WallpaperListView(index: 0, items: viewModel.searchedWallpapers!, viewModel: detailViewModel)
-						WallpaperListView(index: 1, items: viewModel.searchedWallpapers!, viewModel: detailViewModel)
-						WallpaperListView(index: 2, items: viewModel.searchedWallpapers!, viewModel: detailViewModel)
+						WallpaperListView(index: 0, items: viewModel.searchedWallpapers!, imageCache: searchImageCache, viewModel: detailViewModel)
+						WallpaperListView(index: 1, items: viewModel.searchedWallpapers!, imageCache: searchImageCache, viewModel: detailViewModel)
+						WallpaperListView(index: 2, items: viewModel.searchedWallpapers!, imageCache: searchImageCache, viewModel: detailViewModel)
 					}
 					GeometryReader { proxy in
 						let offset = proxy.frame(in: .named("scroll")).minY
@@ -33,7 +35,6 @@ struct SearchResultsView: View {
 				}
 				Button {
 					Task {
-						viewModel.page += 1
 						do {
 							try await viewModel.search(searchText: searchText)
 						} catch {

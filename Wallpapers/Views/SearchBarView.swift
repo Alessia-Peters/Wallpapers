@@ -21,7 +21,7 @@ struct SearchBarView: View {
 	
 	var body: some View {
 		ZStack {
-			Color.primary.colorInvert()
+			Color.primary.colorInvert().ignoresSafeArea()
 			VStack {
 
 				if viewModel.showingResults && viewModel.searchedWallpapers != nil {

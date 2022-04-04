@@ -14,9 +14,9 @@ struct ConnectedView: View {
 	var body: some View {
 		VStack {
 			HStack {
-				WallpaperListView(index: 0, items: wallpapers.allWallpapers, viewModel: detailViewModel)
-				WallpaperListView(index: 1, items: wallpapers.allWallpapers, viewModel: detailViewModel)
-				WallpaperListView(index: 2, items: wallpapers.allWallpapers, viewModel: detailViewModel)
+				WallpaperListView(index: 0, items: wallpapers.allWallpapers, imageCache: .mainImageCache, viewModel: detailViewModel)
+				WallpaperListView(index: 1, items: wallpapers.allWallpapers, imageCache: .mainImageCache, viewModel: detailViewModel)
+				WallpaperListView(index: 2, items: wallpapers.allWallpapers, imageCache: .mainImageCache, viewModel: detailViewModel)
 			}
 			.padding(.horizontal)
 			Button {

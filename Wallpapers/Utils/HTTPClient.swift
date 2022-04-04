@@ -22,8 +22,12 @@ enum HTTPError: Error {
 class HTTPClient {
 	private init() { }
 	
+	/// Access functions on this property
 	static let shared = HTTPClient()
 	
+	/// Fetches and decodes json into any given codeable format
+	/// - Parameter url: Full url for api request
+	/// - Returns: Returns object when method is assigned to explicit variable
 	func fetch<T: Codable>(url: URL) async throws -> T {
 		
 		var request = URLRequest(url: url)
@@ -47,6 +51,9 @@ class HTTPClient {
 		return object
 	}
 	
+	/// Fetches and returns UIImage to save to photo library
+	/// - Parameter imageString: String of the image address
+	/// - Returns: UIImage to download
 	func fetchImage(imageString: String) async throws -> UIImage{
 		guard let imageUrl = URL(string: imageString) else {
 			throw HTTPError.badUrl

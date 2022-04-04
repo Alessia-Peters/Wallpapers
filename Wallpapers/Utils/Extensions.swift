@@ -6,36 +6,53 @@
 
 import SwiftUI
 
+/// Sizes that unsplash provides
 enum ImageSizes {
 	case raw, full, regular, small
 }
 
+/// States weather or not there is a connection
 enum ConnectionState {
 	case connected, connecting, disconnected, noNetwork
 }
 
 extension Array {
 	
+	/// Finds the smallest item in an array
+	/// - Parameter someArray: Array to find smallest item from
+	/// - Returns: Index of smallest item, returns nil if there isnt one
 	private func minIndex(someArray: [Double]) -> Int? {
 		return someArray.indices.min { someArray[$0] < someArray[$1] }
 	}
 	
-	func splitArray(input: [Wallpaper], heights: [Double]) -> ([[Wallpaper]],[Double]) {
+	/// Splits array into a nested array of 3, sorts based on height to keep them even
+	/// - Parameters:
+	///   - inputArray: Array to sort
+	///   - heights: Saved heights of previously sorted arrays
+	/// - Returns: Sorted array, and their corresponding heights
+	func splitArray(inputArray: [Wallpaper], heights: [Double]) -> ([[Wallpaper]],[Double]) {
 		
+		/// Initializes the array that the items will be split into
 		var splitArray = [[Wallpaper](),[Wallpaper](),[Wallpaper]()]
 		
 		var itemHeights = heights
 		
-		input.forEach { item in
+		inputArray.forEach { item in
 			
-			let itemHeight: Double = Double(item.height) / Double(item.width) /// Calculates the ratio of the height and width of the image
+			/// Calculates the ratio of the height and width of the image
+			let itemHeight: Double = Double(item.height) / Double(item.width)
 			
-			let randomPosition = (0...2).randomElement() /// Creates random position of nil is thrown
+			/// Creates random position of nil is thrown
+			let randomPosition = (0...2).randomElement()
 			
-			let smallestHeight = minIndex(someArray: itemHeights) /// Calculates smalled position in itemheights
+			/// Calculates smalled position in itemheights
+			let smallestHeight = minIndex(someArray: itemHeights)
 			
-			splitArray[(smallestHeight ?? randomPosition)!].append(item) /// Adds wallpaper to smallest array or random array
-			itemHeights[(smallestHeight ?? randomPosition)!] += itemHeight /// Adds height to corresponding height
+			/// Adds wallpaper to smallest array or random array
+			splitArray[(smallestHeight ?? randomPosition)!].append(item)
+			
+			/// Adds height to corresponding height
+			itemHeights[(smallestHeight ?? randomPosition)!] += itemHeight
 		}
 		
 		return (splitArray, itemHeights)
@@ -43,21 +60,24 @@ extension Array {
 	
 	//TODO: figure out a way to combine these and remove boilerplate
 	
-	func splitLikedArray(input: [LikedImage]) -> [[LikedImage]] {
+	/// Same as previous item, just for the CoreData LikedImage item
+	/// - Parameter inputArray: Array to sort
+	/// - Returns: Sorted array
+	func splitLikedArray(inputArray: [LikedImage]) -> [[LikedImage]] {
 		var splitArray = [[LikedImage](),[LikedImage](),[LikedImage]()]
 		
 		var itemHeights = [Double(),Double(),Double()]
 		
-		input.forEach { item in
+		inputArray.forEach { item in
 			
 			let itemHeight = item.sizeRatio
 			
-			let randomPosition = (0...2).randomElement() /// Creates random position of nil is thrown
+			let randomPosition = (0...2).randomElement()
 			
-			let smallestHeight = minIndex(someArray: itemHeights) /// Calculates smalled position in itemheights
+			let smallestHeight = minIndex(someArray: itemHeights)
 			
-			splitArray[(smallestHeight ?? randomPosition)!].append(item) /// Adds wallpaper to smallest array or random array
-			itemHeights[(smallestHeight ?? randomPosition)!] += itemHeight /// Adds height to corresponding height
+			splitArray[(smallestHeight ?? randomPosition)!].append(item)
+			itemHeights[(smallestHeight ?? randomPosition)!] += itemHeight 
 		}
 		
 		return splitArray
@@ -65,10 +85,15 @@ extension Array {
 }
 
 extension URLCache {
-	static let imageCache = URLCache(memoryCapacity: 512*1000*1000, diskCapacity: 10*1000*1000*1000)
+	/// Cache for CachedAsyncImage package
+	static let mainImageCache = URLCache(memoryCapacity: 512*1000*1000, diskCapacity: 0)
 }
 
 extension Color {
+	/// Set a color with a hexidecimal value
+	/// - Parameters:
+	///   - hex: Hex color (0x003085)
+	///   - alpha: Opacity
 	init(hex: UInt, alpha: Double = 1) {
 		self.init(
 			.sRGB,
@@ -81,6 +106,11 @@ extension Color {
 }
 
 extension View {
+	/// Allows for more extensive conditional variables
+	/// - Parameters:
+	///   - condition: The state that is watched
+	///   - transform: The modication the gets applied to a view if the condition is true
+	/// - Returns: The view, based on condition
 	@ViewBuilder func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
 		if condition {
 			transform(self)

@@ -14,6 +14,8 @@ struct LikedView: View {
 	@Binding var showingLikes: Bool
 	@State var background = false
 	
+	private let likedImageCache = URLCache(memoryCapacity: 512*1000*1000, diskCapacity: 10*1000*1000*1000)
+	
 	var body: some View {
 		ZStack {
 			Color.primary.ignoresSafeArea().colorInvert()
@@ -21,9 +23,9 @@ struct LikedView: View {
 				ZStack {
 					VStack {
 						HStack {
-							LikedImagesListView(index: 0, items: persistence.likedImages, viewModel: detailViewModel, persistence: persistence)
-							LikedImagesListView(index: 1, items: persistence.likedImages, viewModel: detailViewModel, persistence: persistence)
-							LikedImagesListView(index: 2, items: persistence.likedImages, viewModel: detailViewModel, persistence: persistence)
+							LikedImagesListView(index: 0, items: persistence.likedImages, viewModel: detailViewModel, persistence: persistence, imageCache: likedImageCache)
+							LikedImagesListView(index: 1, items: persistence.likedImages, viewModel: detailViewModel, persistence: persistence, imageCache: likedImageCache)
+							LikedImagesListView(index: 2, items: persistence.likedImages, viewModel: detailViewModel, persistence: persistence, imageCache: likedImageCache)
 						}
 					}
 					.padding()
