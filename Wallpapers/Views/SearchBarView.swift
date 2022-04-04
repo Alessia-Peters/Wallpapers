@@ -25,7 +25,7 @@ struct SearchBarView: View {
 			VStack {
 
 				if viewModel.showingResults && viewModel.searchedWallpapers != nil {
-						SearchResultsView(viewModel: viewModel, detailViewModel: detailViewModel, searchText: $searchText, background: $background)
+					SearchResultsView(viewModel: viewModel, detailViewModel: detailViewModel, wallpaperViewModel: wallpaperViewModel, searchText: $searchText, background: $background)
 						.zIndex(-1)
 				} else if viewModel.noResults {
 					Text("No Results")

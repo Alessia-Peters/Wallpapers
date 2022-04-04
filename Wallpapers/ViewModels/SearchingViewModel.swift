@@ -10,7 +10,7 @@ import SwiftUI
 class SearchingViewModel : ObservableObject {
 	
 	/// Results recieved from API
-	@Published var searchedWallpapers: [[Wallpaper]]?
+	@Published var searchedWallpapers: [Wallpaper]?
 	
 	/// Says whether or not search results are being shown
 	@Published var showingResults = false
@@ -70,29 +70,21 @@ class SearchingViewModel : ObservableObject {
 			throw HTTPError.noResults
 		}
 		
-		let splitResponse = response.results.splitArray(inputArray: response.results, heights: height)
-		
-		let splitItems = splitResponse.0
-		
-		height = splitResponse.1
-		
 		DispatchQueue.main.async {
 			withAnimation {
-				self.searchedWallpapers![0].append(contentsOf: splitItems[0])
-				self.searchedWallpapers![1].append(contentsOf: splitItems[1])
-				self.searchedWallpapers![2].append(contentsOf: splitItems[2])
+				self.searchedWallpapers!.append(contentsOf: response.results)
 				self.showingResults = true
 			}
 		}
 	}
 	
 	func resetSearchResults() {
-		self.searchedWallpapers = [[Wallpaper](),[Wallpaper](),[Wallpaper]()]
+		self.searchedWallpapers = [Wallpaper]()
 		self.page = 1
 		self.height = [0,0,0]
 	}
 	
 	init() {
-		searchedWallpapers =  [[Wallpaper](),[Wallpaper](),[Wallpaper]()]
+		searchedWallpapers =  [Wallpaper]()
 	}
 }

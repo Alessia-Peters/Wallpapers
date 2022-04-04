@@ -13,7 +13,7 @@ class Persistence: ObservableObject {
 	let container: NSPersistentContainer
 	
 	/// All images the user has liked
-	@Published var likedImages = [[LikedImage]]()
+	@Published var likedImages = [LikedImage]()
 	
 	/// Saves a selected image as a LikedImage to CoreData
 	/// - Parameter image: Image to be liked
@@ -69,10 +69,7 @@ class Persistence: ObservableObject {
 		fetchRequest.sortDescriptors = [sort]
 		
 		do {
-			let imageArray = try container.viewContext.fetch(fetchRequest)
-			
-			/// Splits and sets the image array
-			likedImages = imageArray.splitLikedArray(inputArray: imageArray)
+			likedImages = try container.viewContext.fetch(fetchRequest)
 			
 		} catch {
 			print("Error Fetching: \(error)")
@@ -86,11 +83,9 @@ class Persistence: ObservableObject {
 		fetch()
 		
 		var alreadyLiked = false
-		likedImages.forEach { imageSet in
-			imageSet.forEach { image in
+		likedImages.forEach { image in
 				if id == image.id {
 					alreadyLiked = true
-				}
 			}
 		}
 		
@@ -98,7 +93,7 @@ class Persistence: ObservableObject {
 	}
 	
 	init() {
-		likedImages = [[LikedImage](),[LikedImage](),[LikedImage]()]
+		likedImages = [LikedImage]()
 		
 		container = NSPersistentContainer(name: "Data Model")
 		container.loadPersistentStores { description, error in
