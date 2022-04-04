@@ -8,10 +8,11 @@ import SwiftUI
 
 class WallpaperViewModel : ObservableObject {
 	
-	@Published var allWallpapers: [[Wallpaper]]
+	@Published var allWallpapers: [Wallpaper]
 	@Published var popUpText = "Image Saved!"
 	@Published var connectionState: ConnectionState = .disconnected
 	@Published var popUpActive = false
+	@Published var columnAmount = 3
 	
 	/// The height of the columns of images
 	private var height: [Double] = [0,0,0]
@@ -46,19 +47,9 @@ class WallpaperViewModel : ObservableObject {
 			throw HTTPError.badResponse
 		}
 		
-		/// Splits the returned array into a nested array to be used in columns in the view
-		let splitResponse = response.splitArray(inputArray: response, heights: height)
-		
-		let splitItems = splitResponse.0
-		
-		/// Saves the height to be used again if "Load More" is pressed
-		height = splitResponse.1
-		
 		DispatchQueue.main.async {
 			withAnimation {
-				self.allWallpapers[0].append(contentsOf: splitItems[0])
-				self.allWallpapers[1].append(contentsOf: splitItems[1])
-				self.allWallpapers[2].append(contentsOf: splitItems[2])
+				self.allWallpapers.append(contentsOf: response)
 				self.connectionState = .connected
 			}
 		}
@@ -69,14 +60,8 @@ class WallpaperViewModel : ObservableObject {
 	func fetchFromLibrary() async throws {
 		let data = Bundle.main.decode([Wallpaper].self, from: "Example.json")
 		
-		let splitResponse = data.splitArray(inputArray: data, heights: height)
-		
-		let splitItems = splitResponse.0
-		
-		height = splitResponse.1
-		
 		DispatchQueue.main.async {
-			self.allWallpapers = splitItems
+			self.allWallpapers = data
 			self.connectionState = .connected
 		}
 	}
@@ -105,7 +90,14 @@ class WallpaperViewModel : ObservableObject {
 		if Bundle.main.object(forInfoDictionaryKey: "API_KEY") as! String == "" {
 			fatalError("No API Key")
 		}
-		allWallpapers = [[Wallpaper](),[Wallpaper](),[Wallpaper]()]
+		allWallpapers = [Wallpaper]()
+		
+		switch UIDevice.current.userInterfaceIdiom {
+		case .pad:
+			columnAmount = 5
+		default:
+			break
+		}
 	}
 }
 

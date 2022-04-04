@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import SwiftUIMasonry
 
 struct LikedView: View {
 	@ObservedObject var persistence: Persistence
 	@ObservedObject var detailViewModel: DetailViewModel
+	@ObservedObject var wallpaperViewModel: WallpaperViewModel
 	
 	@Binding var showingLikes: Bool
 	@State var background = false
@@ -21,13 +23,21 @@ struct LikedView: View {
 			Color.primary.ignoresSafeArea().colorInvert()
 			ScrollView {
 				ZStack {
-					VStack {
-						HStack {
-							LikedImagesListView(index: 0, items: persistence.likedImages, viewModel: detailViewModel, persistence: persistence, imageCache: likedImageCache)
-							LikedImagesListView(index: 1, items: persistence.likedImages, viewModel: detailViewModel, persistence: persistence, imageCache: likedImageCache)
-							LikedImagesListView(index: 2, items: persistence.likedImages, viewModel: detailViewModel, persistence: persistence, imageCache: likedImageCache)
+					VMasonry(columns: wallpaperViewModel.columnAmount, content: {
+						ForEach(persistence.likedImages) { wallpaper in
+							Button {
+								Task {
+									do {
+										try await detailViewModel.fetchLikedWallpaper(id: wallpaper.id!)
+									} catch {
+										print("Error fetching liked wallpaper: \(error)")
+									}
+								}
+							} label: {
+								ListViewImage(url: wallpaper.thumbnail!, imageCache: likedImageCache)
+							}
 						}
-					}
+					})
 					.padding()
 					.padding(.top, 70)
 					GeometryReader { proxy in
@@ -77,6 +87,6 @@ struct LikedView: View {
 
 struct LikedView_Previews: PreviewProvider {
 	static var previews: some View {
-		LikedView(persistence: Persistence(), detailViewModel: DetailViewModel(), showingLikes: .constant(true))
+		LikedView(persistence: Persistence(), detailViewModel: DetailViewModel(), wallpaperViewModel: WallpaperViewModel(), showingLikes: .constant(true))
 	}
 }

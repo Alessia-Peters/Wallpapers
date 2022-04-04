@@ -86,7 +86,7 @@ struct HomeView: View {
 			}
 			
 			if showingLikes {
-				LikedView(persistence: persistence, detailViewModel: detailViewModel, showingLikes: $showingLikes)
+				LikedView(persistence: persistence, detailViewModel: detailViewModel, wallpaperViewModel: wallpapers, showingLikes: $showingLikes)
 					.zIndex(4)
 			}
 			

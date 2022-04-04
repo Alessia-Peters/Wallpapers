@@ -51,6 +51,7 @@ struct ZoomView: View {
 								.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
 							
 						} placeholder: {
+							Color.black.ignoresSafeArea().frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
 							CachedAsyncImage(url: URL(string: viewModel.selectedWallpaper!.urls.thumb), urlCache: .mainImageCache) { image in
 								image
 									.resizable()

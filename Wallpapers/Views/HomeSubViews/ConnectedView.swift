@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIMasonry
 
 struct ConnectedView: View {
 	@ObservedObject var wallpapers: WallpaperViewModel
@@ -13,11 +14,19 @@ struct ConnectedView: View {
 	
 	var body: some View {
 		VStack {
-			HStack {
-				WallpaperListView(index: 0, items: wallpapers.allWallpapers, imageCache: .mainImageCache, viewModel: detailViewModel)
-				WallpaperListView(index: 1, items: wallpapers.allWallpapers, imageCache: .mainImageCache, viewModel: detailViewModel)
-				WallpaperListView(index: 2, items: wallpapers.allWallpapers, imageCache: .mainImageCache, viewModel: detailViewModel)
-			}
+			VMasonry(columns: wallpapers.columnAmount, content: {
+				ForEach(wallpapers.allWallpapers) { wallpaper in
+					Button {
+						withAnimation {
+							detailViewModel.selectedWallpaper = wallpaper
+							detailViewModel.zoomed = true
+							print("Zooming Image: \(detailViewModel.selectedWallpaper!.id)")
+						}
+					} label: {
+						ListViewImage(url: URL(string: wallpaper.urls.thumb)!, imageCache: .mainImageCache)
+					}
+				}
+			})
 			.padding(.horizontal)
 			Button {
 				Task {

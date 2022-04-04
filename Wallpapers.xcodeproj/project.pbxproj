@@ -11,6 +11,8 @@
 		B60292CF27EFE83400C9ABB6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60292CE27EFE83400C9ABB6 /* Extensions.swift */; };
 		B603E81027F2C8EB0013A3C1 /* NoConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B603E80F27F2C8EB0013A3C1 /* NoConnectionView.swift */; };
 		B603E81327F2C9640013A3C1 /* ConnectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B603E81227F2C9640013A3C1 /* ConnectedView.swift */; };
+		B60E9C8027FA9DE400FD22B6 /* SwiftUIMasonry in Frameworks */ = {isa = PBXBuildFile; productRef = B60E9C7F27FA9DE400FD22B6 /* SwiftUIMasonry */; };
+		B60E9C8227FAA48500FD22B6 /* ListViewImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60E9C8127FAA48500FD22B6 /* ListViewImage.swift */; };
 		B62B5E0627F0720E00570BB0 /* SearchingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B5E0527F0720E00570BB0 /* SearchingViewModel.swift */; };
 		B62B5E0A27F074DC00570BB0 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B5E0927F074DC00570BB0 /* DetailViewModel.swift */; };
 		B654859D27F6A0A3006EFB5D /* Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = B654859C27F6A0A3006EFB5D /* Social.swift */; };
@@ -34,7 +36,6 @@
 		B68D514027F3D43900CB318B /* SaveButtonOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68D513F27F3D43900CB318B /* SaveButtonOptions.swift */; };
 		B68D514227F3E23900CB318B /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68D514127F3E23900CB318B /* InfoView.swift */; };
 		B6BADDD527F122220040C1DF /* SearchMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BADDD427F122220040C1DF /* SearchMoreView.swift */; };
-		B6C8861427F0042400875C01 /* WallpaperListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C8861327F0042400875C01 /* WallpaperListView.swift */; };
 		B6C8861B27F00F4C00875C01 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C8861A27F00F4C00875C01 /* DetailView.swift */; };
 		B6C8862127F027F400875C01 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C8862027F027F400875C01 /* PopUpView.swift */; };
 		B6C8862427F0369400875C01 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = B6C8862327F0369400875C01 /* CachedAsyncImage */; };
@@ -43,7 +44,6 @@
 		B6C8863427F0648200875C01 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C8863327F0648200875C01 /* Bundle+Extension.swift */; };
 		B6C8863827F064AE00875C01 /* Example.json in Resources */ = {isa = PBXBuildFile; fileRef = B6C8863727F064AE00875C01 /* Example.json */; };
 		B6D1D53D27F9509F0060F17C /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B6D1D53C27F9509F0060F17C /* Secrets.xcconfig */; };
-		B6E504A427F7A93800002118 /* LikedImagesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E504A327F7A93800002118 /* LikedImagesListView.swift */; };
 		B6EA20D027EBEBF60052C263 /* ZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EA20CF27EBEBF60052C263 /* ZoomView.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +52,7 @@
 		B60292CE27EFE83400C9ABB6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B603E80F27F2C8EB0013A3C1 /* NoConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoConnectionView.swift; sourceTree = "<group>"; };
 		B603E81227F2C9640013A3C1 /* ConnectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedView.swift; sourceTree = "<group>"; };
+		B60E9C8127FAA48500FD22B6 /* ListViewImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewImage.swift; sourceTree = "<group>"; };
 		B62B5E0527F0720E00570BB0 /* SearchingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingViewModel.swift; sourceTree = "<group>"; };
 		B62B5E0927F074DC00570BB0 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		B654859C27F6A0A3006EFB5D /* Social.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Social.swift; sourceTree = "<group>"; };
@@ -77,7 +78,6 @@
 		B68D513F27F3D43900CB318B /* SaveButtonOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButtonOptions.swift; sourceTree = "<group>"; };
 		B68D514127F3E23900CB318B /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		B6BADDD427F122220040C1DF /* SearchMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoreView.swift; sourceTree = "<group>"; };
-		B6C8861327F0042400875C01 /* WallpaperListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperListView.swift; sourceTree = "<group>"; };
 		B6C8861A27F00F4C00875C01 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		B6C8862027F027F400875C01 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		B6C8862E27F0523A00875C01 /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
@@ -85,7 +85,6 @@
 		B6C8863327F0648200875C01 /* Bundle+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		B6C8863727F064AE00875C01 /* Example.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Example.json; sourceTree = "<group>"; };
 		B6D1D53C27F9509F0060F17C /* Secrets.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
-		B6E504A327F7A93800002118 /* LikedImagesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedImagesListView.swift; sourceTree = "<group>"; };
 		B6EA20CF27EBEBF60052C263 /* ZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B60E9C8027FA9DE400FD22B6 /* SwiftUIMasonry in Frameworks */,
 				B6C8862427F0369400875C01 /* CachedAsyncImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,8 +199,7 @@
 		B6C8863027F056D900875C01 /* Helper Views */ = {
 			isa = PBXGroup;
 			children = (
-				B6C8861327F0042400875C01 /* WallpaperListView.swift */,
-				B6E504A327F7A93800002118 /* LikedImagesListView.swift */,
+				B60E9C8127FAA48500FD22B6 /* ListViewImage.swift */,
 				B6C8862E27F0523A00875C01 /* CircleButtonView.swift */,
 				B6C8862027F027F400875C01 /* PopUpView.swift */,
 				B6BADDD427F122220040C1DF /* SearchMoreView.swift */,
@@ -228,6 +227,7 @@
 			name = Wallpapers;
 			packageProductDependencies = (
 				B6C8862327F0369400875C01 /* CachedAsyncImage */,
+				B60E9C7F27FA9DE400FD22B6 /* SwiftUIMasonry */,
 			);
 			productName = Wallpapers;
 			productReference = B67138E527F3E5DA00B2BBA3 /* Wallpapers.app */;
@@ -259,6 +259,7 @@
 			mainGroup = B6869CDD27EAC6AD00E46331;
 			packageReferences = (
 				B6C8862227F0369400875C01 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
+				B60E9C7E27FA9DE400FD22B6 /* XCRemoteSwiftPackageReference "SwiftUIMasonry" */,
 			);
 			productRefGroup = B6869CDD27EAC6AD00E46331;
 			projectDirPath = "";
@@ -287,9 +288,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B60E9C8227FAA48500FD22B6 /* ListViewImage.swift in Sources */,
 				B67138EC27F44FB600B2BBA3 /* ExtraInfoView.swift in Sources */,
 				B6C8862127F027F400875C01 /* PopUpView.swift in Sources */,
-				B6E504A427F7A93800002118 /* LikedImagesListView.swift in Sources */,
 				B6C8863427F0648200875C01 /* Bundle+Extension.swift in Sources */,
 				B6EA20D027EBEBF60052C263 /* ZoomView.swift in Sources */,
 				B6BADDD527F122220040C1DF /* SearchMoreView.swift in Sources */,
@@ -313,7 +314,6 @@
 				B6C8863227F056E900875C01 /* SearchBarView.swift in Sources */,
 				B68D514227F3E23900CB318B /* InfoView.swift in Sources */,
 				B62B5E0A27F074DC00570BB0 /* DetailViewModel.swift in Sources */,
-				B6C8861427F0042400875C01 /* WallpaperListView.swift in Sources */,
 				B603E81327F2C9640013A3C1 /* ConnectedView.swift in Sources */,
 				B6869D0927EACD0D00E46331 /* Wallpaper.swift in Sources */,
 				B65485A027F6ACD5006EFB5D /* Data Model.xcdatamodeld in Sources */,
@@ -535,6 +535,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B60E9C7E27FA9DE400FD22B6 /* XCRemoteSwiftPackageReference "SwiftUIMasonry" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ciaranrobrien/SwiftUIMasonry";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		B6C8862227F0369400875C01 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image.git";
@@ -546,6 +554,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B60E9C7F27FA9DE400FD22B6 /* SwiftUIMasonry */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B60E9C7E27FA9DE400FD22B6 /* XCRemoteSwiftPackageReference "SwiftUIMasonry" */;
+			productName = SwiftUIMasonry;
+		};
 		B6C8862327F0369400875C01 /* CachedAsyncImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B6C8862227F0369400875C01 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;

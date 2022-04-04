@@ -5,10 +5,12 @@
 //
 
 import SwiftUI
+import SwiftUIMasonry
 
 struct SearchResultsView: View {
 	@ObservedObject var viewModel: SearchingViewModel
 	@ObservedObject var detailViewModel: DetailViewModel
+	@ObservedObject var wallpaperViewModel: WallpaperViewModel
 	
 	@Binding var searchText: String
 	@Binding var background: Bool
@@ -19,11 +21,19 @@ struct SearchResultsView: View {
 		ScrollView {
 			VStack {
 				ZStack {
-					HStack{
-						WallpaperListView(index: 0, items: viewModel.searchedWallpapers!, imageCache: searchImageCache, viewModel: detailViewModel)
-						WallpaperListView(index: 1, items: viewModel.searchedWallpapers!, imageCache: searchImageCache, viewModel: detailViewModel)
-						WallpaperListView(index: 2, items: viewModel.searchedWallpapers!, imageCache: searchImageCache, viewModel: detailViewModel)
-					}
+					VMasonry(columns: wallpaperViewModel.columnAmount, content: {
+						ForEach(viewModel.searchedWallpapers!) { wallpaper in
+							Button {
+								withAnimation {
+									detailViewModel.selectedWallpaper = wallpaper
+									detailViewModel.zoomed = true
+									print("Zooming Image: \(detailViewModel.selectedWallpaper!.id)")
+								}
+							} label: {
+								ListViewImage(url: URL(string: wallpaper.urls.thumb)!, imageCache: searchImageCache)
+							}
+						}
+					})
 					GeometryReader { proxy in
 						let offset = proxy.frame(in: .named("scroll")).minY
 						Color.clear.onChange(of: offset) { _ in
@@ -58,6 +68,6 @@ struct SearchResultView_Previews: PreviewProvider {
 		let viewModel = SearchingViewModel()
 		let detailViewModel = DetailViewModel()
 		
-		SearchResultsView(viewModel: viewModel, detailViewModel: detailViewModel, searchText: .constant(""), background: .constant(true))
+		SearchResultsView(viewModel: viewModel, detailViewModel: detailViewModel, wallpaperViewModel: WallpaperViewModel(), searchText: .constant(""), background: .constant(true))
 	}
 }
