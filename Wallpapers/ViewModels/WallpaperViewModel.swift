@@ -9,6 +9,7 @@ import SwiftUI
 class WallpaperViewModel : ObservableObject {
 	
 	@Published var allWallpapers: [Wallpaper]
+	@Published var selectedIndex = 0
 	@Published var popUpText = "Image Saved!"
 	@Published var connectionState: ConnectionState = .disconnected
 	@Published var popUpActive = false
@@ -83,6 +84,16 @@ class WallpaperViewModel : ObservableObject {
 				// TODO: Make the popup show if a photo failed to save
 				self.popUpActive = true
 			}
+		}
+	}
+	
+	func swipeWallpaper(offset: CGSize) -> Wallpaper? {
+		if offset.width > 100 {
+			return allWallpapers[allWallpapers.index(before: selectedIndex)]
+		} else if offset.width < -100 {
+			return allWallpapers[allWallpapers.index(after: selectedIndex)]
+		} else {
+			return nil
 		}
 	}
 	

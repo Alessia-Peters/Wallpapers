@@ -32,6 +32,7 @@ struct SearchBarView: View {
 						.opacity(0.4)
 					Spacer()
 				} else if viewModel.connectionState == .noNetwork {
+					Spacer()
 					Button {
 						Task {
 							do {

@@ -19,23 +19,23 @@ struct HomeView: View {
 	var body: some View {
 		ZStack {
 			if wallpapers.connectionState == .connected {
-					ScrollView {
-						ZStack {
-							ConnectedView(wallpapers: wallpapers, detailViewModel: detailViewModel)
-								.padding(.top, 86)
-							GeometryReader { proxy in
-								let offset = proxy.frame(in: .named("scroll")).minY
-								Color.clear.onChange(of: offset) { _ in
-									withAnimation {
-										background = detailViewModel.ifScrolling(offset: offset)
-									}
+				ScrollView {
+					ZStack {
+						ConnectedView(wallpapers: wallpapers, detailViewModel: detailViewModel)
+							.padding(.top, 86)
+						GeometryReader { proxy in
+							let offset = proxy.frame(in: .named("scroll")).minY
+							Color.clear.onChange(of: offset) { _ in
+								withAnimation {
+									background = detailViewModel.ifScrolling(offset: offset)
 								}
 							}
 						}
 					}
-					.coordinateSpace(name: "scroll")
-				} else if wallpapers.connectionState == .noNetwork {
-					NoConnectionView(wallpapers: wallpapers)
+				}
+				.coordinateSpace(name: "scroll")
+			} else if wallpapers.connectionState == .noNetwork {
+				NoConnectionView(wallpapers: wallpapers)
 			}
 			
 			VStack {
@@ -119,7 +119,7 @@ struct HomeView: View {
 		.statusBar(hidden: true)
 	}
 }
-//
+
 //struct ContentView_Previews: PreviewProvider {
 //	static var previews: some View {
 //		HomeView()

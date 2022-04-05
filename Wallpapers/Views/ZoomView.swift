@@ -15,6 +15,7 @@ struct ZoomView: View {
 	
 	@State var detailShown = true
 	@State var infoShown = false
+	@State var viewState = CGSize.zero
 	
 	var body: some View {
 		ZStack{
@@ -66,6 +67,10 @@ struct ZoomView: View {
 					
 					.zIndex(1)
 					.animation(.easeInOut, value: infoShown)
+					.frame(width: infoShown ? viewModel.widthRatio() : nil, height: infoShown ? 200 : nil)
+					.cornerRadius(infoShown ? 15 : 0)
+					.ignoresSafeArea()
+					.padding(infoShown ? 15 : 0)
 					.onTapGesture {
 						withAnimation {
 							if !infoShown {
@@ -75,10 +80,23 @@ struct ZoomView: View {
 							}
 						}
 					}
-					.frame(width: infoShown ? viewModel.widthRatio() : nil, height: infoShown ? 200 : nil)
-					.cornerRadius(infoShown ? 15 : 0)
-					.ignoresSafeArea()
-					.padding(infoShown ? 15 : 0)
+					.offset(x: viewState.width)
+					.gesture(
+						DragGesture()
+							.onChanged { value in
+								viewState = value.translation
+							}
+							.onEnded { value in
+								withAnimation(.spring()) {
+									if wallpaperViewModel.swipeWallpaper(offset: viewState) != nil {
+										viewModel.selectedWallpaper = wallpaperViewModel.swipeWallpaper(offset: viewState)
+									}
+									
+									viewState = .zero
+								}
+							}
+					)
+					
 					
 					if infoShown {
 						InfoView(detailViewModel: viewModel)
@@ -91,11 +109,11 @@ struct ZoomView: View {
 			DetailView(viewModel: viewModel, wallpaperViewModel: wallpaperViewModel, persistence: persistence, infoShown: $infoShown, detailShown: $detailShown)
 				.opacity(detailShown ? 1 : 0)
 			
-				if viewModel.bioSheet {
-					ExtraInfoView(viewModel: viewModel, title: "Bio", text: viewModel.selectedWallpaper!.user.bio!)
-				}
-				if viewModel.descriptionSheet {
-					ExtraInfoView(viewModel: viewModel, title: "Description", text: viewModel.selectedWallpaper!.description ?? viewModel.selectedWallpaper!.altDescription!)
+			if viewModel.bioSheet {
+				ExtraInfoView(viewModel: viewModel, title: "Bio", text: viewModel.selectedWallpaper!.user.bio!)
+			}
+			if viewModel.descriptionSheet {
+				ExtraInfoView(viewModel: viewModel, title: "Description", text: viewModel.selectedWallpaper!.description ?? viewModel.selectedWallpaper!.altDescription!)
 			}
 		}
 		.onTapGesture {

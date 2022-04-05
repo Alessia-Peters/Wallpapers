@@ -16,8 +16,8 @@ class DetailViewModel : ObservableObject {
 	@Published var bioSheet = false
 	@Published var descriptionSheet = false
 	
-	/// <#Description#>
-	/// - Parameter id: <#id description#>
+	/// Fetches a single liked wallpaper when it is selected from the liked menu
+	/// - Parameter id: The ID of the wallpaper being requestedwe
 	func fetchLikedWallpaper(id: String) async throws {
 		let urlString = Constants.baseUrl + Endpoints.id + id
 		
@@ -38,9 +38,9 @@ class DetailViewModel : ObservableObject {
 		}
 	}
 	
-	/// <#Description#>
-	/// - Returns: <#description#>
-	func imageSize() -> String{
+	/// Gets needed size for download
+	/// - Returns: URL (as string) for image being downloaded
+	func imageSize() -> String {
 		var selectedImage: String
 		
 		switch selectedSize {
@@ -58,9 +58,9 @@ class DetailViewModel : ObservableObject {
 		
 	}
 	
-	/// <#Description#>
-	/// - Returns: <#description#>
-	func widthRatio() -> Double{
+	/// Calculates the ratio needed for the view in InfoView
+	/// - Returns: The width for the image shown
+	func widthRatio() -> Double {
 		let height = (selectedWallpaper?.height)!
 		let width = (selectedWallpaper?.width)!
 		
@@ -69,7 +69,8 @@ class DetailViewModel : ObservableObject {
 		return widthRatio * 200
 	}
 	
-	/// <#Description#>
+	/// Hides the extra details in InfoView
+	/// Needed since animations don't work without it
 	func hideDetails() {
 		withAnimation {
 			sheetOpacity = 0
@@ -81,8 +82,8 @@ class DetailViewModel : ObservableObject {
 		}
 	}
 	
-	/// <#Description#>
-	/// - Parameter type: <#type description#>
+	/// Shows the extra details in InfoView
+	/// - Parameter type: whether its a bio or description
 	func showDetails(type: SheetTypes) {
 		if sheetActive == false {
 			withAnimation {
@@ -98,11 +99,11 @@ class DetailViewModel : ObservableObject {
 		}
 	}
 	
-	/// <#Description#>
+	/// Detects if the background up the top should be shown
 	/// - Parameters:
-	///   - offset: <#offset description#>
-	///   - offsetMax: <#offsetMax description#>
-	/// - Returns: <#description#>
+	///   - offset: Current offset of the scroll view
+	///   - offsetMax: Offset required to show the background
+	/// - Returns: Whether or not the background should appear
 	func ifScrolling(offset: CGFloat, offsetMax: CGFloat = -0.5) -> Bool {
 		if offset > offsetMax {
 			return false
@@ -111,6 +112,7 @@ class DetailViewModel : ObservableObject {
 		}
 	}
 	
+	/// Types of info sheets
 	enum SheetTypes {
 		case bio, description
 	}

@@ -15,8 +15,6 @@ struct SearchResultsView: View {
 	@Binding var searchText: String
 	@Binding var background: Bool
 	
-	private let searchImageCache = URLCache(memoryCapacity: 512*1000*1000, diskCapacity: 0)
-	
 	var body: some View {
 		ScrollView {
 			VStack {
@@ -30,7 +28,7 @@ struct SearchResultsView: View {
 									print("Zooming Image: \(detailViewModel.selectedWallpaper!.id)")
 								}
 							} label: {
-								ListViewImage(url: URL(string: wallpaper.urls.thumb)!, imageCache: searchImageCache)
+								ListViewImage(url: URL(string: wallpaper.urls.thumb)!, imageCache: viewModel.searchImageCache)
 							}
 						}
 					})

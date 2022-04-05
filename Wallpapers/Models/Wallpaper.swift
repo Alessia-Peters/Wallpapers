@@ -7,6 +7,7 @@
 import Foundation
 
 struct Wallpaper : Identifiable, Codable {
+	
 	var id: String
 	
 	var urls: URLs

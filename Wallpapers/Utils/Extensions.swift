@@ -38,7 +38,7 @@ extension Color {
 }
 
 extension View {
-	/// Allows for more extensive conditional variables
+	/// Allows for more extensive conditional modifiers
 	/// - Parameters:
 	///   - condition: The state that is watched
 	///   - transform: The modication the gets applied to a view if the condition is true
@@ -48,6 +48,20 @@ extension View {
 			transform(self)
 		} else {
 			self
+		}
+	}
+}
+
+struct ForEachWithIndex<
+Data: RandomAccessCollection,
+	Content: View
+>: View where Data.Element: Identifiable, Data.Element: Hashable {
+	let data: Data
+	@ViewBuilder let content: (Data.Index, Data.Element) -> Content
+	
+	var body: some View {
+		ForEach(Array(zip(data.indices, data)), id: \.1) { index, element in
+			content(index, element)
 		}
 	}
 }

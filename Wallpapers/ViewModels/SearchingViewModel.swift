@@ -4,7 +4,6 @@
 //  Created by Alessia on 27/3/2022.
 //
 
-import Foundation
 import SwiftUI
 
 class SearchingViewModel : ObservableObject {
@@ -21,6 +20,9 @@ class SearchingViewModel : ObservableObject {
 	/// Whether or can connect to internet
 	@Published var connectionState: ConnectionState = .disconnected
 	
+	/// Cache used for searched image thumbnails
+	@Published var searchImageCache = URLCache(memoryCapacity: 512*1000*1000, diskCapacity: 0)
+	
 	/// Previous search, used to reset page
 	private var previousSearch = String()
 	
@@ -34,7 +36,7 @@ class SearchingViewModel : ObservableObject {
 	/// - Parameter searchText: The item thats being searched
 	func search(searchText: String) async throws {
 		
-		/// Throws if a connection cant be made
+		/// Throws if a connection can't be made
 		do {
 			try await HTTPClient.shared.checkConnection()
 		} catch {
@@ -49,13 +51,15 @@ class SearchingViewModel : ObservableObject {
 			self.page += 1
 		}
 		
+		/// Combines needed url elements into a single string
 		let urlString = Constants.baseUrl + Endpoints.search + searchText.replacingOccurrences(of: " ", with: "+") + Parameters.page + String(page)
-		print(urlString)
 		
+		///	Turns the string into a URL
 		guard let url = URL(string: urlString) else {
 			throw HTTPError.badUrl
 		}
 		
+		///	Sends api request via HTTPClient
 		guard let response: SearchResults = try await HTTPClient.shared.fetch(url: url) else {
 			throw HTTPError.badResponse
 		}
@@ -78,6 +82,7 @@ class SearchingViewModel : ObservableObject {
 		}
 	}
 	
+	/// Resets search related values back to initial state
 	func resetSearchResults() {
 		self.searchedWallpapers = [Wallpaper]()
 		self.page = 1
